@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 import '../Style/Style.dart';
 
 class RoundedButton extends StatelessWidget {
-  RoundedButton({required this.textTitle,required this.color});
+  RoundedButton({required this.textTitle, required this.color, required this.onPressed});
 
   final Color color;
   final String textTitle;
+  final VoidCallback onPressed;
+
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -18,7 +20,7 @@ class RoundedButton extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(18.0),
         ),
-        onPressed: () {},
+        onPressed: onPressed,
         color: color,
         child: Text(
           textTitle.toUpperCase(),

@@ -1,0 +1,1 @@
+const kFirestoreCollectionId = "NwYnLS4QWaC5KsZXDltJ";
