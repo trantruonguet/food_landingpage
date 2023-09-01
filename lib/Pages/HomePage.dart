@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:solmusic/NavigationBar/NavigationBar.dart';
 import 'package:solmusic/Pages/LandingPage.dart';
+import 'package:solmusic/Pages/MenuPage.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -8,17 +9,53 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  HomeItem type = HomeItem.Menupage;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
           children: [
-            NavigationBarItem(),
-            LandingPage(),
+            NavigationBarItem(
+              onLandingPagePress: () {
+                setState(() {
+                  if (type != HomeItem.LandingOage) {
+                    type = HomeItem.LandingOage;
+                  }
+                });
+              },
+              onMenuPagePress: () {
+                setState(() {
+                  if (type != HomeItem.Menupage) {
+                    type = HomeItem.Menupage;
+                  }
+                });
+              },
+              onBookPagePress: () {
+                setState(() {
+                  if (type != HomeItem.BookPage) {
+                    type = HomeItem.BookPage;
+                  }
+                });
+              },
+              onContactPagePress: () {
+                setState(() {
+                  if (type != HomeItem.ContactPage) {
+                    type = HomeItem.ContactPage;
+                  }
+                });
+              },
+            ),
+            if (type == HomeItem.LandingOage) LandingPage(),
+            if (type == HomeItem.Menupage) MenuPage(),
+            if (type == HomeItem.BookPage) Container(),
+            if (type == HomeItem.ContactPage) Container(),
           ],
         ),
       ),
     );
   }
 }
+
+enum HomeItem { LandingOage, Menupage, BookPage, ContactPage }

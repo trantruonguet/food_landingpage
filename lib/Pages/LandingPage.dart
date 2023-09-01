@@ -1,11 +1,10 @@
+// ignore: avoid_web_libraries_in_flutter
 import 'dart:html';
 import 'package:flutter/material.dart';
 import 'package:google_maps/google_maps.dart' as mapGG;
-import 'package:google_maps_flutter_web/google_maps_flutter_web.dart';
 import 'package:solmusic/Style/Style.dart';
 import 'package:solmusic/Widget/RoundedButton.dart';
 import 'dart:ui' as ui;
-
 
 class LandingPage extends StatefulWidget {
   @override
@@ -39,66 +38,62 @@ class DesktopPage extends StatefulWidget {
 }
 
 class _DesktopPageState extends State<DesktopPage> {
-  Widget customFlexible(String text, String labelText, String subText, var image, bool imageLeft) {
-    return 
-    // Flexible(
-      // flex: 1,
-      // child: 
-      Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16.0),
-        child: Row(
-          children: [
-            if (imageLeft) Flexible(
-              flex: 1,
-              child: Image.asset(image),
-            ),
-            if (imageLeft) SizedBox(
-              width: 48,
-            ),
+  Widget customFlexible(String text, String labelText, String subText,
+      var image, bool imageLeft) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+      child: Row(
+        children: [
+          if (imageLeft)
             Flexible(
               flex: 1,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  // CircleAvatar(
-                  //   backgroundColor: Color(0xffF24854),
-                  //   radius: 32.0,
-                  //   child: Icon(icon, color: Colors.white, size: 28.0),
-                  // ),
-                  SizedBox(
-                    height: 20.0,
-                  ),
-                  Text(
-                    text,
-                    style: ThemText.createText,
-                  ),
-                  SizedBox(
-                    height: 20.0,
-                  ),
-                  Text(
-                    labelText,
-                    style: ThemText.createText,
-                  ),
-                  SizedBox(
-                    height: 20.0,
-                  ),
-                  Text(
-                    subText,
-                    style: ThemText.howitworkDec,
-                  ),
-                ],
-              ),
+              child: Image.asset(image),
             ),
-            if (!imageLeft) SizedBox(
+          if (imageLeft)
+            SizedBox(
               width: 48,
             ),
-            if (!imageLeft) Flexible(
+          Flexible(
+            flex: 1,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                SizedBox(
+                  height: 20.0,
+                ),
+                Text(
+                  text,
+                  style: ThemText.createText,
+                ),
+                SizedBox(
+                  height: 20.0,
+                ),
+                Text(
+                  labelText,
+                  style: ThemText.createText,
+                ),
+                SizedBox(
+                  height: 20.0,
+                ),
+                Text(
+                  subText,
+                  style: ThemText.howitworkDec,
+                ),
+              ],
+            ),
+          ),
+          if (!imageLeft)
+            SizedBox(
+              width: 48,
+            ),
+          if (!imageLeft)
+            Flexible(
               flex: 1,
               child: Image.asset(image),
             ),
-          ],
-        ),
+        ],
+      ),
       // ),
     );
   }
@@ -155,7 +150,7 @@ class _DesktopPageState extends State<DesktopPage> {
           ),
           Text(
             description,
-            style: ThemText.describtionTex,
+            style: ThemText.describtionText,
             textAlign: TextAlign.center,
           )
         ],
@@ -358,7 +353,7 @@ class _DesktopPageState extends State<DesktopPage> {
                                 const EdgeInsets.symmetric(horizontal: 16.0),
                             child: Text(
                               "With us you will experience our philosophy and enjoy the unique quality of our original Japanese sushi. \nWe serve a large selection of first-class sushi and Vietnamese dishes in a cozy East Asian ambience. \nYou can also rely on us when it comes to choosing drinks. Whether you want a homemade iced tea, a fresh mint tea with ginger or an Asian beer - our drinks menu offers numerous specialties as well as well-known alcoholic and soft drinks.",
-                              style: ThemText.describtionTex,
+                              style: ThemText.describtionText,
                             ),
                           ),
                         ],
@@ -368,7 +363,8 @@ class _DesktopPageState extends State<DesktopPage> {
                       ),
                       RoundedButton(
                         color: Color(0xff383B70),
-                        textTitle: "Our airy and cozy space will be especially suitable for you and your beloved one. \nWe are looking forward to your visit!",
+                        textTitle:
+                            "Our airy and cozy space will be especially suitable for you and your beloved one. \nWe are looking forward to your visit!",
                       ),
                     ],
                   ),
@@ -406,12 +402,11 @@ class _DesktopPageState extends State<DesktopPage> {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       customFlexible(
-                        "Sushi bar",
-                        "ASIAN CUISINE",
-                        "Our chefs put a lot of passion into conjuring up fresh delicacies on your plate every day. Whether it's a business lunch, a romantic dinner or a family celebration, with us you can escape from everyday life and embark on a wonderful culinary journey.",
-                        "images/sol2.png",
-                        true
-                      ),
+                          "Sushi bar",
+                          "ASIAN CUISINE",
+                          "Our chefs put a lot of passion into conjuring up fresh delicacies on your plate every day. Whether it's a business lunch, a romantic dinner or a family celebration, with us you can escape from everyday life and embark on a wonderful culinary journey.",
+                          "images/sol2.png",
+                          true),
                       SizedBox(
                         height: 48.0,
                       ),
@@ -426,12 +421,11 @@ class _DesktopPageState extends State<DesktopPage> {
                         height: 48.0,
                       ),
                       customFlexible(
-                        "Drinking",
-                        "Hot and cool",
-                        "Lorem ipsum dolor sit amet, consectetur adipi-scing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum sus-pendisse ultrices gravida.",
-                        "images/sol4.webp",
-                        true
-                      ),
+                          "Drinking",
+                          "Hot and cool",
+                          "Lorem ipsum dolor sit amet, consectetur adipi-scing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum sus-pendisse ultrices gravida.",
+                          "images/sol4.webp",
+                          true),
                     ],
                   )
                 ],
@@ -449,39 +443,6 @@ class _DesktopPageState extends State<DesktopPage> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  // Expanded(
-                  //   flex: 1,
-                  //   child: Container(
-                  //       child: Row(
-                  //     mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  //     children: [
-                        // Flexible(
-                        //     flex: 2,
-                        //     child: Wrap(
-                        //       children: [
-                        //         Text(
-                        //           "Our Concept & artists",
-                        //           style: ThemText.purpuleText,
-                        //         ),
-                        //       ],
-                        //     )),
-                        // Flexible(
-                        //     flex: 3,
-                        //     child: Wrap(
-                        //       children: [
-                        //         Padding(
-                        //           padding:
-                        //               EdgeInsets.symmetric(horizontal: 16.0),
-                        //           child: Text(
-                        //             "Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-                        //             style: ThemText.helpGreyText,
-                        //           ),
-                        //         )
-                        //       ],
-                        //     ))
-                  //     ],
-                  //   )),
-                  // ),
                   Expanded(
                     flex: 2,
                     child: Container(
@@ -490,22 +451,22 @@ class _DesktopPageState extends State<DesktopPage> {
                         children: [
                           Flexible(
                               flex: 1,
-                              child:
-                                  customCard('THE BEST RESTAURANT', 
-                                  "With us you not only enjoy delicious food, but also a diverse Asian cuisine. \nFor all food bloggers: Take a photo and share it immediately on Instagram - no problem, we have free WiFi", 
-                                  'images/pic2.jfif',
-                                  )),
+                              child: customCard(
+                                'THE BEST RESTAURANT',
+                                "With us you not only enjoy delicious food, but also a diverse Asian cuisine. \nFor all food bloggers: Take a photo and share it immediately on Instagram - no problem, we have free WiFi",
+                                'images/pic2.jfif',
+                              )),
                           Flexible(
                               flex: 1,
                               child: customCard(
-                                  'PERFECT FOR FAMILY', 
-                                  "Our air is filled with aroma. \nIf you are looking for a spacious, comfortable, luxurious and cozy place to meet up with friends and family, VietStreet Restaurant is the best choice",
-                                  'images/pic3.jfif',
-                                  )),
+                                'PERFECT FOR FAMILY',
+                                "Our air is filled with aroma. \nIf you are looking for a spacious, comfortable, luxurious and cozy place to meet up with friends and family, VietStreet Restaurant is the best choice",
+                                'images/pic3.jfif',
+                              )),
                           Flexible(
                               flex: 1,
                               child: customCard(
-                                'FRESH EVERY DAY', 
+                                'FRESH EVERY DAY',
                                 'Our dishes are prepared exclusively with fresh and high-quality ingredients. \nYour health and satisfaction is always our top priority',
                                 'images/pic4.jfif',
                               )),
@@ -528,7 +489,11 @@ class _DesktopPageState extends State<DesktopPage> {
               ),
             ),
           ),
-          SizedBox(height: 350, width: size.width, child: HtmlElementView(viewType: htmlId),),
+          SizedBox(
+            height: 350,
+            width: size.width,
+            child: HtmlElementView(viewType: htmlId),
+          ),
           //Subscription
           // Container(
           //   alignment: Alignment.center,
