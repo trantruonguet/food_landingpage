@@ -1,15 +1,39 @@
 import 'package:flutter/material.dart';
 
-class DateDropdownButton extends StatefulWidget {
-  const DateDropdownButton({super.key});
+class TimeDropdownButton extends StatefulWidget {
+  const TimeDropdownButton({super.key});
 
   @override
-  State<DateDropdownButton> createState() => _DateDropdownButtonState();
+  State<TimeDropdownButton> createState() => _TimeDropdownButtonState();
 }
 
-class _DateDropdownButtonState extends State<DateDropdownButton> {
-  List<String> list = <String>['Today', 'Tomorrow'];
-  String dropdownValue = 'Today';
+class _TimeDropdownButtonState extends State<TimeDropdownButton> {
+  List<String> list = <String>[
+    'Time',
+    '10h30',
+    "11h00",
+    "11h30",
+    "12h00",
+    "12h30",
+    "13h30",
+    "14h00",
+    "16h30",
+    "17h00",
+    "17h30",
+    "18h00",
+    "18h30",
+    "19h00",
+    "19h30",
+    "20h00",
+    "20h30",
+    "21h00",
+    "21h30",
+    "22h00",
+    "22h30",
+    "23h00",
+    "23h30",
+  ];
+  String dropdownValue = 'Time';
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +45,6 @@ class _DateDropdownButtonState extends State<DateDropdownButton> {
           borderRadius: BorderRadius.all(Radius.circular(8))),
       child: DropdownButtonHideUnderline(
         child: DropdownButton<String>(
-          isExpanded: true,
           value: dropdownValue,
           icon: const Icon(Icons.arrow_downward),
           elevation: 16,

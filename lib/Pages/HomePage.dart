@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:solmusic/NavigationBar/NavigationBar.dart';
+import 'package:solmusic/Pages/BookingPage.dart';
 import 'package:solmusic/Pages/LandingPage.dart';
 import 'package:solmusic/Pages/MenuPage.dart';
 
@@ -9,7 +10,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  HomeItem type = HomeItem.Menupage;
+  HomeItem type = HomeItem.BookPage;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +22,8 @@ class _HomePageState extends State<HomePage> {
               onLandingPagePress: () {
                 setState(() {
                   if (type != HomeItem.LandingOage) {
-                    type = HomeItem.LandingOage;
+                    // type = HomeItem.LandingOage;
+                    type = HomeItem.BookPage;
                   }
                 });
               },
@@ -49,7 +51,7 @@ class _HomePageState extends State<HomePage> {
             ),
             if (type == HomeItem.LandingOage) LandingPage(),
             if (type == HomeItem.Menupage) MenuPage(),
-            if (type == HomeItem.BookPage) Container(),
+            if (type == HomeItem.BookPage) BookingPage(),
             if (type == HomeItem.ContactPage) Container(),
           ],
         ),
