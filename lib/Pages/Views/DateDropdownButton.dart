@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class DateDropdownButton extends StatefulWidget {
   const DateDropdownButton({super.key});
@@ -8,8 +9,47 @@ class DateDropdownButton extends StatefulWidget {
 }
 
 class _DateDropdownButtonState extends State<DateDropdownButton> {
-  List<String> list = <String>['Today', 'Tomorrow'];
+  List<String> list = <String>[];
   String dropdownValue = 'Today';
+
+  @override
+  void initState() {
+    super.initState();
+    DateTime now = DateTime.now();
+    DateTime today = DateTime(now.year, now.month, now.day);
+    final formatDate = DateFormat('EEEE');
+    final formatDateResult = DateFormat('yyyy/MM/dd');
+    if (formatDate.format(today) != 'Sunday') {
+      list.add("Today");
+    }
+    DateTime tomorrow = DateTime(now.year, now.month, now.day + 1);
+    if (formatDate.format(tomorrow) != 'Sunday') {
+      list.add("Tomorrow");
+    }
+    DateTime date2 = DateTime(now.year, now.month, now.day + 2);
+    if (formatDate.format(date2) != 'Sunday') {
+      list.add(formatDateResult.format(date2).toString());
+    }
+    DateTime date3 = DateTime(now.year, now.month, now.day + 3);
+    if (formatDate.format(date3) != 'Sunday') {
+      list.add(formatDateResult.format(date3).toString());
+    }
+    DateTime date4 = DateTime(now.year, now.month, now.day + 4);
+    if (formatDate.format(date4) != 'Sunday') {
+      list.add(formatDateResult.format(date4).toString());
+    }
+    DateTime date5 = DateTime(now.year, now.month, now.day + 5);
+    if (formatDate.format(date5) != 'Sunday') {
+      list.add(formatDateResult.format(date5).toString());
+    }
+    DateTime date6 = DateTime(now.year, now.month, now.day + 6);
+    if (formatDate.format(date6) != 'Sunday') {
+      list.add(formatDateResult.format(date6).toString());
+    }
+    setState(() {
+      list = list;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
