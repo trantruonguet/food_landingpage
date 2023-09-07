@@ -12,42 +12,32 @@ import 'dart:ui' as ui;
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/foundation.dart';
 
+import 'Views/ImageMultipleSource.dart';
+
 class LandingPage extends StatefulWidget {
+  final FirestoreData? data;
+
+  const LandingPage({super.key, this.data});
+
   @override
   _LandingPageState createState() => _LandingPageState();
 }
 
 class _LandingPageState extends State<LandingPage> {
-  FirestoreDBRepo dbRepo = FirestoreDBRepo();
-  FirestoreData? data;
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) async {
-      data = await dbRepo.getData();
-      setState(() {
-        data: data;
-      });
-
-    });
-
-  }
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
         if (constraints.maxWidth > 1200) {
           //For Desktop Screen
-          return DesktopPage(data: data);
+          return DesktopPage(data: widget.data);
         } else if (constraints.maxWidth >= 800 &&
             constraints.maxWidth <= 1200) {
           //for Tablet Screen
-          return DesktopPage(data: data);
+          return DesktopPage(data: widget.data);
         } else {
           //for mobile Screen
-          return DesktopPage(data: data);
+          return DesktopPage(data: widget.data);
         }
       },
     );
@@ -60,13 +50,12 @@ class DesktopPage extends StatefulWidget {
   const DesktopPage({super.key, required this.data});
 
   @override
-  _DesktopPageState createState() => _DesktopPageState(data);
+  _DesktopPageState createState() => _DesktopPageState();
 }
 
 class _DesktopPageState extends State<DesktopPage> {
-  final FirestoreData? data;
 
-  _DesktopPageState(this.data);
+  _DesktopPageState();
 
   @override
   void initState() {
@@ -75,59 +64,68 @@ class _DesktopPageState extends State<DesktopPage> {
 
   }
   Widget customFlexible(String text, String labelText, String subText,
-      var image, bool imageLeft) {
+      var image, bool imageLeft, bool isTheLast) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
-      child: Row(
+      child: Column(
         children: [
-          if (imageLeft)
-            Flexible(
-              flex: 1,
-              child: Image.asset(image),
-            ),
-          if (imageLeft)
-            SizedBox(
-              width: 48,
-            ),
-          Flexible(
-            flex: 1,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
+          Row(
+            children: [
+              if (imageLeft)
+                Flexible(
+                  flex: 1,
+                  child: ImageMultipleSource(imageUrl: image),
+                ),
+              if (imageLeft)
                 SizedBox(
-                  height: 20.0,
+                  width: 48,
                 ),
-                Text(
-                  text,
-                  style: ThemText.createText,
+              Flexible(
+                flex: 1,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    SizedBox(
+                      height: 20.0,
+                    ),
+                    Text(
+                      text,
+                      style: ThemText.createText,
+                    ),
+                    SizedBox(
+                      height: 20.0,
+                    ),
+                    Text(
+                      labelText,
+                      style: ThemText.createText,
+                    ),
+                    SizedBox(
+                      height: 20.0,
+                    ),
+                    Text(
+                      subText,
+                      style: ThemText.howitworkDec,
+                    ),
+                  ],
                 ),
+              ),
+              if (!imageLeft)
                 SizedBox(
-                  height: 20.0,
+                  width: 48,
                 ),
-                Text(
-                  labelText,
-                  style: ThemText.createText,
+              if (!imageLeft)
+                Flexible(
+                  flex: 1,
+                  child: ImageMultipleSource(imageUrl: image),
                 ),
-                SizedBox(
-                  height: 20.0,
-                ),
-                Text(
-                  subText,
-                  style: ThemText.howitworkDec,
-                ),
-              ],
-            ),
+
+            ],
           ),
-          if (!imageLeft)
+          if (!isTheLast)
             SizedBox(
-              width: 48,
-            ),
-          if (!imageLeft)
-            Flexible(
-              flex: 1,
-              child: Image.asset(image),
-            ),
+              height: 48.0,
+            )
         ],
       ),
       // ),
@@ -241,7 +239,7 @@ class _DesktopPageState extends State<DesktopPage> {
       mapGG.Marker(mapGG.MarkerOptions()
         ..position = map.center
         ..map = map
-        ..title = this.data?.restaurantName);
+        ..title = widget.data?.restaurantName);
 
       return elem;
     });
@@ -269,7 +267,7 @@ class _DesktopPageState extends State<DesktopPage> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                            data?.overview?.title ?? "",
+                            widget.data?.overview?.title ?? "",
                             style: ThemText.homewhiteTitle,
                           ),
                           ],
@@ -286,7 +284,7 @@ class _DesktopPageState extends State<DesktopPage> {
                                 child: Wrap(
                                   children: [
                                     Text(
-                                      data?.overview?.content ?? "",
+                                      widget.data?.overview?.content ?? "",
                                       style: ThemText.homeDescTitle,
                                     ),
                                   ],
@@ -297,7 +295,7 @@ class _DesktopPageState extends State<DesktopPage> {
                                 child: Wrap(
                                   children: [
                                     Text(
-                                      data?.overview?.subContent ?? "",
+                                      widget.data?.overview?.subContent ?? "",
                                       style: ThemText.homeDescTitle,
                                     ),
                                   ],
@@ -314,7 +312,7 @@ class _DesktopPageState extends State<DesktopPage> {
                           children: [
                             RoundedButton(
                               color: Color(0xffFC0254),
-                              textTitle: data?.overview?.buttonTitle ?? "",
+                              textTitle: widget.data?.overview?.buttonTitle ?? "",
                               onPressed: () {
 
                               },
@@ -334,9 +332,7 @@ class _DesktopPageState extends State<DesktopPage> {
                   alignment: Alignment.topCenter,
                   child: Padding(
                     padding: const EdgeInsets.symmetric(vertical: 16.0),
-                    child: Image(
-                      image: AssetImage(data?.overview?.imageUrl ?? ""),
-                    ),
+                    child: ImageMultipleSource(imageUrl: widget.data?.overview?.imageUrl ?? ""),
                   ),
                 ),
               ],
@@ -344,61 +340,61 @@ class _DesktopPageState extends State<DesktopPage> {
           ),
 
           //Unlimited Access
-          Container(
-            height: size.height * 0.74,
-            width: size.width,
-            color: Colors.white,
-            child: Row(
-              children: [
-                Container(
-                  alignment: Alignment.center,
-                  width: size.width / 2,
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 26.0),
-                    child: Wrap(
-                      children: [
-                        Text(
-                          "Welcome",
-                          style: ThemText.bigTextTitle,
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-                Container(
-                  width: size.width / 2,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Wrap(
-                        children: [
-                          Padding(
-                            padding:
-                                const EdgeInsets.symmetric(horizontal: 16.0),
-                            child: Text(
-                              "With us you will experience our philosophy and enjoy the unique quality of our original Japanese sushi. \nWe serve a large selection of first-class sushi and Vietnamese dishes in a cozy East Asian ambience. \nYou can also rely on us when it comes to choosing drinks. Whether you want a homemade iced tea, a fresh mint tea with ginger or an Asian beer - our drinks menu offers numerous specialties as well as well-known alcoholic and soft drinks.",
-                              style: ThemText.describtionText,
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: 22.0,
-                      ),
-                      RoundedButton(
-                        color: Color(0xff383B70),
-                        textTitle: "Our airy and cozy space will be especially suitable for you and your beloved one. \nWe are looking forward to your visit!",
-                        onPressed: () {
-
-                        }
-                      ),
-                    ],
-                  ),
-                )
-              ],
-            ),
-          ),
+          // Container(
+          //   height: size.height * 0.74,
+          //   width: size.width,
+          //   color: Colors.white,
+          //   child: Row(
+          //     children: [
+          //       Container(
+          //         alignment: Alignment.center,
+          //         width: size.width / 2,
+          //         child: Padding(
+          //           padding: const EdgeInsets.symmetric(horizontal: 26.0),
+          //           child: Wrap(
+          //             children: [
+          //               Text(
+          //                 "Welcome",
+          //                 style: ThemText.bigTextTitle,
+          //               )
+          //             ],
+          //           ),
+          //         ),
+          //       ),
+          //       Container(
+          //         width: size.width / 2,
+          //         child: Column(
+          //           crossAxisAlignment: CrossAxisAlignment.start,
+          //           mainAxisAlignment: MainAxisAlignment.center,
+          //           children: [
+          //             Wrap(
+          //               children: [
+          //                 Padding(
+          //                   padding:
+          //                       const EdgeInsets.symmetric(horizontal: 16.0),
+          //                   child: Text(
+          //                     "With us you will experience our philosophy and enjoy the unique quality of our original Japanese sushi. \nWe serve a large selection of first-class sushi and Vietnamese dishes in a cozy East Asian ambience. \nYou can also rely on us when it comes to choosing drinks. Whether you want a homemade iced tea, a fresh mint tea with ginger or an Asian beer - our drinks menu offers numerous specialties as well as well-known alcoholic and soft drinks.",
+          //                     style: ThemText.describtionText,
+          //                   ),
+          //                 ),
+          //               ],
+          //             ),
+          //             SizedBox(
+          //               height: 22.0,
+          //             ),
+          //             RoundedButton(
+          //               color: Color(0xff383B70),
+          //               textTitle: "Our airy and cozy space will be especially suitable for you and your beloved one. \nWe are looking forward to your visit!",
+          //               onPressed: () {
+          //
+          //               }
+          //             ),
+          //           ],
+          //         ),
+          //       )
+          //     ],
+          //   ),
+          // ),
 
           //How it works
           Container(
@@ -428,31 +424,14 @@ class _DesktopPageState extends State<DesktopPage> {
                   Column(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      customFlexible(
-                          "Sushi bar",
-                          "ASIAN CUISINE",
-                          "Our chefs put a lot of passion into conjuring up fresh delicacies on your plate every day. Whether it's a business lunch, a romantic dinner or a family celebration, with us you can escape from everyday life and embark on a wonderful culinary journey.",
-                          "images/sol2.png",
-                          true),
-                      SizedBox(
-                        height: 48.0,
-                      ),
-                      customFlexible(
-                        "Her satisfaction",
-                        "IS THE A&O",
-                        "When you enter our stylishly furnished restaurant, you will immerse yourself in a world where food culture is celebrated. Embark on a culinary journey with us and be enchanted by the colours, scents and aromas.",
-                        "images/sol3.png",
-                        false,
-                      ),
-                      SizedBox(
-                        height: 48.0,
-                      ),
-                      customFlexible(
-                          "Drinking",
-                          "Hot and cool",
-                          "Lorem ipsum dolor sit amet, consectetur adipi-scing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum sus-pendisse ultrices gravida.",
-                          "images/sol4.webp",
-                          true),
+                      for (final (index, item) in widget.data?.menus?.indexed ?? [].indexed)
+                        customFlexible(
+                            item.title ?? "",
+                            item.content ?? "",
+                            item.subContent ?? "",
+                            item.imageUrl ?? "",
+                            index % 2 == 0,
+                            index == (widget.data?.menus?.length ?? 0) - 1)
                     ],
                   )
                 ],
@@ -476,27 +455,36 @@ class _DesktopPageState extends State<DesktopPage> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
-                          Flexible(
-                              flex: 1,
-                              child: customCard(
-                                'THE BEST RESTAURANT',
-                                "With us you not only enjoy delicious food, but also a diverse Asian cuisine. \nFor all food bloggers: Take a photo and share it immediately on Instagram - no problem, we have free WiFi",
-                                'images/pic2.jfif',
-                              )),
-                          Flexible(
-                              flex: 1,
-                              child: customCard(
-                                'PERFECT FOR FAMILY',
-                                "Our air is filled with aroma. \nIf you are looking for a spacious, comfortable, luxurious and cozy place to meet up with friends and family, VietStreet Restaurant is the best choice",
-                                'images/pic3.jfif',
-                              )),
-                          Flexible(
-                              flex: 1,
-                              child: customCard(
-                                'FRESH EVERY DAY',
-                                'Our dishes are prepared exclusively with fresh and high-quality ingredients. \nYour health and satisfaction is always our top priority',
-                                'images/pic4.jfif',
-                              )),
+                          ...widget.data?.horizontalSlogans?.map((e) =>
+                            Flexible(
+                            flex: 1,
+                            child: customCard(
+                            e.title,
+                            e.content,
+                            e.imageUrl,
+                            )),
+                          ) ?? [],
+                          // Flexible(
+                          //     flex: 1,
+                          //     child: customCard(
+                          //       'THE BEST RESTAURANT',
+                          //       "With us you not only enjoy delicious food, but also a diverse Asian cuisine. \nFor all food bloggers: Take a photo and share it immediately on Instagram - no problem, we have free WiFi",
+                          //       'images/pic2.jfif',
+                          //     )),
+                          // Flexible(
+                          //     flex: 1,
+                          //     child: customCard(
+                          //       'PERFECT FOR FAMILY',
+                          //       "Our air is filled with aroma. \nIf you are looking for a spacious, comfortable, luxurious and cozy place to meet up with friends and family, VietStreet Restaurant is the best choice",
+                          //       'images/pic3.jfif',
+                          //     )),
+                          // Flexible(
+                          //     flex: 1,
+                          //     child: customCard(
+                          //       'FRESH EVERY DAY',
+                          //       'Our dishes are prepared exclusively with fresh and high-quality ingredients. \nYour health and satisfaction is always our top priority',
+                          //       'images/pic4.jfif',
+                          //     )),
                         ],
                       ),
                     ),
@@ -681,13 +669,14 @@ class _DesktopPageState extends State<DesktopPage> {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
-                          footerText("12:00-22:30"),
-                          footerText("12:00-22:30"),
-                          footerText("12:00-22:30"),
-                          footerText("12:00-22:30"),
-                          footerText("12:00-22:30"),
-                          footerText("12:00-22:30"),
-                          footerText("Closed"),
+                        ...widget.data?.openHours?.map((e) => footerText(e)) ?? [],
+                          // footerText("12:00-22:30"),
+                          // footerText("12:00-22:30"),
+                          // footerText("12:00-22:30"),
+                          // footerText("12:00-22:30"),
+                          // footerText("12:00-22:30"),
+                          // footerText("12:00-22:30"),
+                          // footerText("Closed"),
                         ],
                       ),
                       Column(
@@ -715,13 +704,13 @@ class _DesktopPageState extends State<DesktopPage> {
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 12.0),
                     child: Text(
-                      "Sol Restaurent",
+                      widget.data?.restaurantName ?? "" ,
                       style: ThemText.footerText,
                     ),
                   ),
                   Center(
                     child: Text(
-                      "© Created By Sol Restaurent",
+                      "© Created By ${ widget.data?.restaurantName ?? "" }",
                       style: ThemText.footerText,
                     ),
                   )

@@ -12,13 +12,35 @@ Future<void> main() async {
   runApp(MyApp());
 }
  
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  String restaurantName = "";
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+  }
+
+  void getRestaurantName() async {
+    FirestoreDBRepo repo = FirestoreDBRepo();
+    final data = await repo.getData();
+    restaurantName = data.restaurantName ?? "";
+    setState(() {
+      restaurantName = restaurantName;
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'My Restaurant',
+      title: restaurantName,
       debugShowCheckedModeBanner: false,
-      home: LandingPage(),
+      home: HomePage(),
     );
   }
 }

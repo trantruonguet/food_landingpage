@@ -11,7 +11,7 @@ class SectionData {
   final String? imageUrl;
   final String? iconUrl;
   final String? id;
-
+  final int? order;
   SectionData({
     this.title,
     this.content,
@@ -19,7 +19,8 @@ class SectionData {
     this.buttonTitle,
     this.imageUrl,
     this.iconUrl,
-    this.id
+    this.id,
+    this.order
   });
 
   factory SectionData.fromJson(Map<String, dynamic> json) => _$SectionDataFromJson(json);

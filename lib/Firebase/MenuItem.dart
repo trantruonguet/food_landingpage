@@ -9,7 +9,8 @@ class MenuItem {
     this.name,
     this.description,
     this.image,
-    this.order
+    this.order,
+    this.menuId
   });
 
   int? order;
@@ -17,6 +18,7 @@ class MenuItem {
   String? name;
   String? description;
   String? image;
+  String? menuId;
 
   factory MenuItem.fromJson(Map<String, dynamic> json) => _$MenuItemFromJson(json);
   Map<String, dynamic> toJson() => _$MenuItemToJson(this);
