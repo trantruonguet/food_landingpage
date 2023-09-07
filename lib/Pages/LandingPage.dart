@@ -1,15 +1,16 @@
+// ignore: avoid_web_libraries_in_flutter
 import 'dart:html';
 import 'package:flutter/material.dart';
 import 'package:google_maps/google_maps.dart' as mapGG;
 import 'package:google_maps_flutter_web/google_maps_flutter_web.dart';
 import 'package:solmusic/Firebase/FirestoreDBRepo.dart';
+import 'package:solmusic/Firebase/FirestoreData.dart';
 import 'package:solmusic/Style/Style.dart';
 import 'package:solmusic/Widget/RoundedButton.dart';
 import 'dart:ui' as ui;
 
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/foundation.dart';
-
 
 class LandingPage extends StatefulWidget {
   @override
@@ -18,14 +19,18 @@ class LandingPage extends StatefulWidget {
 
 class _LandingPageState extends State<LandingPage> {
   FirestoreDBRepo dbRepo = FirestoreDBRepo();
+  FirestoreData? data;
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    final data = dbRepo.getData();
-    setState(() {
-      data: data;
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      data = await dbRepo.getData();
+      setState(() {
+        data: data;
+      });
+
     });
 
   }
@@ -35,14 +40,14 @@ class _LandingPageState extends State<LandingPage> {
       builder: (BuildContext context, BoxConstraints constraints) {
         if (constraints.maxWidth > 1200) {
           //For Desktop Screen
-          return DesktopPage();
+          return DesktopPage(data: data);
         } else if (constraints.maxWidth >= 800 &&
             constraints.maxWidth <= 1200) {
           //for Tablet Screen
-          return DesktopPage();
+          return DesktopPage(data: data);
         } else {
           //for mobile Screen
-          return DesktopPage();
+          return DesktopPage(data: data);
         }
       },
     );
@@ -50,71 +55,81 @@ class _LandingPageState extends State<LandingPage> {
 }
 
 class DesktopPage extends StatefulWidget {
+  final FirestoreData? data;
+
+  const DesktopPage({super.key, required this.data});
+
   @override
-  _DesktopPageState createState() => _DesktopPageState();
+  _DesktopPageState createState() => _DesktopPageState(data);
 }
 
 class _DesktopPageState extends State<DesktopPage> {
-  Widget customFlexible(String text, String labelText, String subText, var image, bool imageLeft) {
-    return 
-    // Flexible(
-      // flex: 1,
-      // child: 
-      Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16.0),
-        child: Row(
-          children: [
-            if (imageLeft) Flexible(
-              flex: 1,
-              child: Image.asset(image),
-            ),
-            if (imageLeft) SizedBox(
-              width: 48,
-            ),
+  final FirestoreData? data;
+
+  _DesktopPageState(this.data);
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+  }
+  Widget customFlexible(String text, String labelText, String subText,
+      var image, bool imageLeft) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+      child: Row(
+        children: [
+          if (imageLeft)
             Flexible(
               flex: 1,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  // CircleAvatar(
-                  //   backgroundColor: Color(0xffF24854),
-                  //   radius: 32.0,
-                  //   child: Icon(icon, color: Colors.white, size: 28.0),
-                  // ),
-                  SizedBox(
-                    height: 20.0,
-                  ),
-                  Text(
-                    text,
-                    style: ThemText.createText,
-                  ),
-                  SizedBox(
-                    height: 20.0,
-                  ),
-                  Text(
-                    labelText,
-                    style: ThemText.createText,
-                  ),
-                  SizedBox(
-                    height: 20.0,
-                  ),
-                  Text(
-                    subText,
-                    style: ThemText.howitworkDec,
-                  ),
-                ],
-              ),
+              child: Image.asset(image),
             ),
-            if (!imageLeft) SizedBox(
+          if (imageLeft)
+            SizedBox(
               width: 48,
             ),
-            if (!imageLeft) Flexible(
+          Flexible(
+            flex: 1,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                SizedBox(
+                  height: 20.0,
+                ),
+                Text(
+                  text,
+                  style: ThemText.createText,
+                ),
+                SizedBox(
+                  height: 20.0,
+                ),
+                Text(
+                  labelText,
+                  style: ThemText.createText,
+                ),
+                SizedBox(
+                  height: 20.0,
+                ),
+                Text(
+                  subText,
+                  style: ThemText.howitworkDec,
+                ),
+              ],
+            ),
+          ),
+          if (!imageLeft)
+            SizedBox(
+              width: 48,
+            ),
+          if (!imageLeft)
+            Flexible(
               flex: 1,
               child: Image.asset(image),
             ),
-          ],
-        ),
+        ],
+      ),
       // ),
     );
   }
@@ -171,7 +186,7 @@ class _DesktopPageState extends State<DesktopPage> {
           ),
           Text(
             description,
-            style: ThemText.describtionTex,
+            style: ThemText.describtionText,
             textAlign: TextAlign.center,
           )
         ],
@@ -226,10 +241,12 @@ class _DesktopPageState extends State<DesktopPage> {
       mapGG.Marker(mapGG.MarkerOptions()
         ..position = map.center
         ..map = map
-        ..title = "Sol Restaurent");
+        ..title = this.data?.restaurantName);
 
       return elem;
     });
+
+
     return SingleChildScrollView(
       child: Column(
         children: [
@@ -251,26 +268,10 @@ class _DesktopPageState extends State<DesktopPage> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Row(
-                              children: [
-                                Text(
-                                  "Sol ",
-                                  style: ThemText.homePinkTitle,
-                                ),
-                                Text(
-                                  "for",
-                                  style: ThemText.homewhiteTitle,
-                                ),
-                              ],
-                            ),
                             Text(
-                              "lunch and ",
-                              style: ThemText.homewhiteTitle,
-                            ),
-                            Text(
-                              "dinner ",
-                              style: ThemText.homewhiteTitle,
-                            ),
+                            data?.overview?.title ?? "",
+                            style: ThemText.homewhiteTitle,
+                          ),
                           ],
                         ),
                       ),
@@ -285,7 +286,7 @@ class _DesktopPageState extends State<DesktopPage> {
                                 child: Wrap(
                                   children: [
                                     Text(
-                                      "Would you like to enjoy the best of Asian cuisine.",
+                                      data?.overview?.content ?? "",
                                       style: ThemText.homeDescTitle,
                                     ),
                                   ],
@@ -296,7 +297,7 @@ class _DesktopPageState extends State<DesktopPage> {
                                 child: Wrap(
                                   children: [
                                     Text(
-                                      "SoL is here for you!!",
+                                      data?.overview?.subContent ?? "",
                                       style: ThemText.homeDescTitle,
                                     ),
                                   ],
@@ -313,7 +314,7 @@ class _DesktopPageState extends State<DesktopPage> {
                           children: [
                             RoundedButton(
                               color: Color(0xffFC0254),
-                              textTitle: "BOOKING now",
+                              textTitle: data?.overview?.buttonTitle ?? "",
                               onPressed: () {
 
                               },
@@ -334,7 +335,7 @@ class _DesktopPageState extends State<DesktopPage> {
                   child: Padding(
                     padding: const EdgeInsets.symmetric(vertical: 16.0),
                     child: Image(
-                      image: AssetImage("images/sol1.jpeg"),
+                      image: AssetImage(data?.overview?.imageUrl ?? ""),
                     ),
                   ),
                 ),
@@ -377,7 +378,7 @@ class _DesktopPageState extends State<DesktopPage> {
                                 const EdgeInsets.symmetric(horizontal: 16.0),
                             child: Text(
                               "With us you will experience our philosophy and enjoy the unique quality of our original Japanese sushi. \nWe serve a large selection of first-class sushi and Vietnamese dishes in a cozy East Asian ambience. \nYou can also rely on us when it comes to choosing drinks. Whether you want a homemade iced tea, a fresh mint tea with ginger or an Asian beer - our drinks menu offers numerous specialties as well as well-known alcoholic and soft drinks.",
-                              style: ThemText.describtionTex,
+                              style: ThemText.describtionText,
                             ),
                           ),
                         ],
@@ -428,12 +429,11 @@ class _DesktopPageState extends State<DesktopPage> {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       customFlexible(
-                        "Sushi bar",
-                        "ASIAN CUISINE",
-                        "Our chefs put a lot of passion into conjuring up fresh delicacies on your plate every day. Whether it's a business lunch, a romantic dinner or a family celebration, with us you can escape from everyday life and embark on a wonderful culinary journey.",
-                        "images/sol2.png",
-                        true
-                      ),
+                          "Sushi bar",
+                          "ASIAN CUISINE",
+                          "Our chefs put a lot of passion into conjuring up fresh delicacies on your plate every day. Whether it's a business lunch, a romantic dinner or a family celebration, with us you can escape from everyday life and embark on a wonderful culinary journey.",
+                          "images/sol2.png",
+                          true),
                       SizedBox(
                         height: 48.0,
                       ),
@@ -448,12 +448,11 @@ class _DesktopPageState extends State<DesktopPage> {
                         height: 48.0,
                       ),
                       customFlexible(
-                        "Drinking",
-                        "Hot and cool",
-                        "Lorem ipsum dolor sit amet, consectetur adipi-scing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum sus-pendisse ultrices gravida.",
-                        "images/sol4.webp",
-                        true
-                      ),
+                          "Drinking",
+                          "Hot and cool",
+                          "Lorem ipsum dolor sit amet, consectetur adipi-scing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum sus-pendisse ultrices gravida.",
+                          "images/sol4.webp",
+                          true),
                     ],
                   )
                 ],
@@ -471,39 +470,6 @@ class _DesktopPageState extends State<DesktopPage> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  // Expanded(
-                  //   flex: 1,
-                  //   child: Container(
-                  //       child: Row(
-                  //     mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  //     children: [
-                        // Flexible(
-                        //     flex: 2,
-                        //     child: Wrap(
-                        //       children: [
-                        //         Text(
-                        //           "Our Concept & artists",
-                        //           style: ThemText.purpuleText,
-                        //         ),
-                        //       ],
-                        //     )),
-                        // Flexible(
-                        //     flex: 3,
-                        //     child: Wrap(
-                        //       children: [
-                        //         Padding(
-                        //           padding:
-                        //               EdgeInsets.symmetric(horizontal: 16.0),
-                        //           child: Text(
-                        //             "Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-                        //             style: ThemText.helpGreyText,
-                        //           ),
-                        //         )
-                        //       ],
-                        //     ))
-                  //     ],
-                  //   )),
-                  // ),
                   Expanded(
                     flex: 2,
                     child: Container(
@@ -512,22 +478,22 @@ class _DesktopPageState extends State<DesktopPage> {
                         children: [
                           Flexible(
                               flex: 1,
-                              child:
-                                  customCard('THE BEST RESTAURANT', 
-                                  "With us you not only enjoy delicious food, but also a diverse Asian cuisine. \nFor all food bloggers: Take a photo and share it immediately on Instagram - no problem, we have free WiFi", 
-                                  'images/pic2.jfif',
-                                  )),
+                              child: customCard(
+                                'THE BEST RESTAURANT',
+                                "With us you not only enjoy delicious food, but also a diverse Asian cuisine. \nFor all food bloggers: Take a photo and share it immediately on Instagram - no problem, we have free WiFi",
+                                'images/pic2.jfif',
+                              )),
                           Flexible(
                               flex: 1,
                               child: customCard(
-                                  'PERFECT FOR FAMILY', 
-                                  "Our air is filled with aroma. \nIf you are looking for a spacious, comfortable, luxurious and cozy place to meet up with friends and family, VietStreet Restaurant is the best choice",
-                                  'images/pic3.jfif',
-                                  )),
+                                'PERFECT FOR FAMILY',
+                                "Our air is filled with aroma. \nIf you are looking for a spacious, comfortable, luxurious and cozy place to meet up with friends and family, VietStreet Restaurant is the best choice",
+                                'images/pic3.jfif',
+                              )),
                           Flexible(
                               flex: 1,
                               child: customCard(
-                                'FRESH EVERY DAY', 
+                                'FRESH EVERY DAY',
                                 'Our dishes are prepared exclusively with fresh and high-quality ingredients. \nYour health and satisfaction is always our top priority',
                                 'images/pic4.jfif',
                               )),
@@ -550,7 +516,11 @@ class _DesktopPageState extends State<DesktopPage> {
               ),
             ),
           ),
-          SizedBox(height: 350, width: size.width, child: HtmlElementView(viewType: htmlId),),
+          SizedBox(
+            height: 350,
+            width: size.width,
+            child: HtmlElementView(viewType: htmlId),
+          ),
           //Subscription
           // Container(
           //   alignment: Alignment.center,

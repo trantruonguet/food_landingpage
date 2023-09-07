@@ -27,6 +27,9 @@ FirestoreData _$FirestoreDataFromJson(Map<String, dynamic> json) =>
       json['youtubeLink'] as String?,
       json['privacyLink'] as String?,
       json['aboutUsLink'] as String?,
+      (json['menuItems'] as List<dynamic>?)
+          ?.map((e) => MenuItem.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$FirestoreDataToJson(FirestoreData instance) =>
@@ -44,4 +47,5 @@ Map<String, dynamic> _$FirestoreDataToJson(FirestoreData instance) =>
       'youtubeLink': instance.youtubeLink,
       'privacyLink': instance.privacyLink,
       'aboutUsLink': instance.aboutUsLink,
+      'menuItems': instance.menuItems,
     };

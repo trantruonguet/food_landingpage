@@ -8,12 +8,18 @@ class SectionData {
   final String? content;
   final String? subContent;
   final String? buttonTitle;
+  final String? imageUrl;
+  final String? iconUrl;
+  final String? id;
 
   SectionData({
-    required this.title,
-    required this.content,
-    required this.subContent,
-    required this.buttonTitle,
+    this.title,
+    this.content,
+    this.subContent,
+    this.buttonTitle,
+    this.imageUrl,
+    this.iconUrl,
+    this.id
   });
 
   factory SectionData.fromJson(Map<String, dynamic> json) => _$SectionDataFromJson(json);

@@ -11,6 +11,9 @@ SectionData _$SectionDataFromJson(Map<String, dynamic> json) => SectionData(
       content: json['content'] as String?,
       subContent: json['subContent'] as String?,
       buttonTitle: json['buttonTitle'] as String?,
+      imageUrl: json['imageUrl'] as String?,
+      iconUrl: json['iconUrl'] as String?,
+      id: json['id'] as String?,
     );
 
 Map<String, dynamic> _$SectionDataToJson(SectionData instance) =>
@@ -19,4 +22,7 @@ Map<String, dynamic> _$SectionDataToJson(SectionData instance) =>
       'content': instance.content,
       'subContent': instance.subContent,
       'buttonTitle': instance.buttonTitle,
+      'imageUrl': instance.imageUrl,
+      'iconUrl': instance.iconUrl,
+      'id': instance.id,
     };

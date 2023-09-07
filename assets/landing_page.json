@@ -1,0 +1,126 @@
+{
+  "restaurantName": "My restaurant",
+  "overview": {
+    "title": "Welcome to my restaurant",
+    "content": "With us you will experience our philosophy and enjoy the unique quality of our original Japanese sushi. \\nWe serve a large selection of first-class sushi and Vietnamese dishes in a cozy East Asian ambience. \\nYou can also rely on us when it comes to choosing drinks. Whether you want a homemade iced tea, a fresh mint tea with ginger or an Asian beer - our drinks menu offers numerous specialties as well as well-known alcoholic and soft drinks.",
+    "subContent": "",
+    "buttonTitle": "Booking now",
+    "imageUrl": "images/sol1.jpeg",
+    "iconUrl": ""
+  },
+  "menus": [
+    {
+      "id": "Menu1",
+      "title": "Sushi bar",
+      "content": "Asian cuisine",
+      "subContent": "Our chefs put a lot of passion into conjuring up fresh delicacies on your plate every day. Whether it's a business lunch, a romantic dinner or a family celebration, with us you can escape from everyday life and embark on a wonderful culinary journey.",
+      "buttonTitle": "Booking now",
+      "imageUrl": "images/sol2.png",
+      "iconUrl": ""
+    },{
+      "id": "Menu2",
+      "title": "Noodle",
+      "content": "Lorem ipsum dolor sit amet.",
+      "subContent": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat",
+      "buttonTitle": "Booking now",
+      "imageUrl": "images/sol3.png",
+      "iconUrl": ""
+    },{
+      "id": "Menu3",
+      "title": "Drinking",
+      "content": "Hot and cool",
+      "subContent": "Lorem ipsum dolor sit amet, consectetur adipi-scing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum sus-pendisse ultrices gravida.",
+      "buttonTitle": "Booking now",
+      "imageUrl": "images/sol4.webp",
+      "iconUrl": ""
+    }
+  ],
+  "horizontalSlogans": [
+    {
+      "title": "THE BEST RESTAURANT",
+      "content": "With us you not only enjoy delicious food, but also a diverse Asian cuisine. \\nFor all food bloggers: Take a photo and share it immediately on Instagram - no problem, we have free WiFi",
+      "subContent": "",
+      "buttonTitle": "",
+      "imageUrl": "images/pic2.jfif",
+      "iconUrl": ""
+    },{
+      "title": "PERFECT FOR FAMILY",
+      "content": "Our air is filled with aroma. \\nIf you are looking for a spacious, comfortable, luxurious and cozy place to meet up with friends and family, VietStreet Restaurant is the best choice",
+      "subContent": "",
+      "buttonTitle": "",
+      "imageUrl": "images/pic3.jfif",
+      "iconUrl": ""
+    },{
+      "title": "FRESH EVERY DAY",
+      "content": "Our dishes are prepared exclusively with fresh and high-quality ingredients. \\nYour health and satisfaction is always our top priority",
+      "subContent": "",
+      "buttonTitle": "",
+      "imageUrl": "images/pic4.jfif",
+      "iconUrl": ""
+    }
+  ],
+  "latitude": "",
+  "longitude": "",
+  "openHours": [
+    "8:00"
+  ],
+  "phoneNumber": "",
+  "facebookLink": "",
+  "instagramLink": "",
+  "youtubeLink": "",
+  "privacyLink": "",
+  "aboutUsLink": "",
+  "menuItems": [
+    {
+      "name": "Lorem ipsum dolor sit amet",
+      "description":
+      "Lorem ipsum dolor sit amet, consectetur adipi-scing elit, sed do eiusmod tempor ",
+      "cost": "15",
+      "image": "images/pic1.png",
+      "menuId": "Menu3",
+      "order": 1
+    },{
+      "name": "Sashimi",
+      "description":
+      "Lorem ipsum dolor sit amet, consectetur adipi-scing elit, sed do eiusmod tempor ",
+      "cost": "15",
+      "image": "images/pic1.png",
+      "menuId": "Menu1",
+      "order": 2
+    },
+    {
+      "name": "Lorem ipsum dolor sit amet",
+      "description":
+      "Lorem ipsum dolor sit amet, consectetur adipi-scing elit, sed do eiusmod tempor ",
+      "cost": "15",
+      "image": "images/pic1.png",
+      "menuId": "Menu2",
+      "order": 1
+    },{
+      "name": "Sashimi",
+      "description":
+      "Lorem ipsum dolor sit amet, consectetur adipi-scing elit, sed do eiusmod tempor ",
+      "cost": "15",
+      "image": "images/pic1.png",
+      "menuId": "Menu2",
+      "order": 2
+    },
+    {
+      "name": "Sake wine",
+      "description":
+      "Sake Nigiri - 6 Sake Maki - 8 Sake Inside Out - (*D, 1, 2, 17, 20) - Ein Süppchen oder eine Extra-Soße (Beilage) gegen Aufpreis wird empfohlen.",
+      "cost": "15",
+      "image": "images/pic1.png",
+      "menuId": "Menu3",
+      "order": 1
+    },{
+      "name": "Sochu",
+      "description":
+      "Sake Nigiri - 6 Sake Maki - 8 Sake Inside Out - (*D, 1, 2, 17, 20) - Ein Süppchen oder eine Extra-Soße (Beilage) gegen Aufpreis wird empfohlen.",
+      "cost": "15",
+      "image": "images/pic1.png",
+      "menuId": "Menu3",
+      "order": 2
+    }
+  ]
+}
