@@ -630,7 +630,7 @@ class _DesktopPageState extends State<DesktopPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 12.0),
+                    padding: const EdgeInsets.symmetric(vertical: 8.0),
                     child: Text(
                       "Open Hours",
                       style: ThemText.footerText,
@@ -654,33 +654,35 @@ class _DesktopPageState extends State<DesktopPage> {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
-                          footerText("12:00-22:30"),
-                          footerText("12:00-22:30"),
-                          footerText("12:00-22:30"),
-                          footerText("12:00-22:30"),
-                          footerText("12:00-22:30"),
-                          footerText("12:00-22:30"),
+                          footerText("10:30-23:30"),
+                          footerText("10:30-23:30"),
+                          footerText("10:30-23:30"),
+                          footerText("10:30-23:30"),
+                          footerText("10:30-23:30"),
+                          footerText("10:30-23:30"),
                           footerText("Closed"),
                         ],
                       ),
+                      Container(),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
+                          footerText("Address"),
                           footerText("Contact Us"),
+                          footerText("Email"),
                           footerText("Terms of Use"),
-                          // footerText("Ways to Watch"),
-                          // footerText("Corporate Information"),
                           // footerText("SolMusic Originals"),
                         ],
                       ),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
-                          // footerText("Media Centre"),
-                          // footerText("Terms of Use"),
-                          // footerText("Contact Us"),
+                          footerText(
+                              "14 Floor, Berlin Centre, Berlin, Germany"),
                           footerText("+84123456789"),
+                          footerText("sol_restaurent@gmail.com"),
                           footerText("Privacy"),
+                          // footerText("Contact Us"),
                         ],
                       )
                     ],
@@ -695,7 +697,7 @@ class _DesktopPageState extends State<DesktopPage> {
                   Center(
                     child: Text(
                       "© Created By Sol Restaurent",
-                      style: ThemText.footerText,
+                      style: ThemText.footerText.copyWith(fontSize: 20),
                     ),
                   )
                 ],

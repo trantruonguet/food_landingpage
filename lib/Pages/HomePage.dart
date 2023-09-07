@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:solmusic/NavigationBar/NavigationBar.dart';
 import 'package:solmusic/Pages/BookingPage.dart';
+import 'package:solmusic/Pages/ContactPage.dart';
 import 'package:solmusic/Pages/LandingPage.dart';
 import 'package:solmusic/Pages/MenuPage.dart';
 
@@ -10,7 +11,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  HomeItem type = HomeItem.BookPage;
+  HomeItem type = HomeItem.LandingOage;
+  bool cookiesAccepted = false;
 
   @override
   Widget build(BuildContext context) {
@@ -22,8 +24,8 @@ class _HomePageState extends State<HomePage> {
               onLandingPagePress: () {
                 setState(() {
                   if (type != HomeItem.LandingOage) {
-                    // type = HomeItem.LandingOage;
-                    type = HomeItem.BookPage;
+                    type = HomeItem.LandingOage;
+                    // type = HomeItem.BookPage;
                   }
                 });
               },
@@ -52,10 +54,39 @@ class _HomePageState extends State<HomePage> {
             if (type == HomeItem.LandingOage) LandingPage(),
             if (type == HomeItem.Menupage) MenuPage(),
             if (type == HomeItem.BookPage) BookingPage(),
-            if (type == HomeItem.ContactPage) Container(),
+            if (type == HomeItem.ContactPage) ContactPage(),
           ],
         ),
       ),
+      bottomSheet: cookiesAccepted
+          ? null
+          : Container(
+              height: 60,
+              width: double.infinity,
+              child: Center(
+                  child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text("You agree with our services"),
+                  SizedBox(
+                    width: 30,
+                  ),
+                  InkWell(
+                    onTap: () {
+                      setState(() {
+                        cookiesAccepted = true;
+                      });
+                    },
+                    child: Container(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 30, vertical: 8),
+                      color: Colors.grey,
+                      child: Text("Accept Cookies"),
+                    ),
+                  ),
+                ],
+              )),
+            ),
     );
   }
 }
