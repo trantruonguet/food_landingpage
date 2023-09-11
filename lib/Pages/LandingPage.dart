@@ -5,6 +5,7 @@ import 'package:google_maps/google_maps.dart' as mapGG;
 import 'package:google_maps_flutter_web/google_maps_flutter_web.dart';
 import 'package:solmusic/Firebase/FirestoreDBRepo.dart';
 import 'package:solmusic/Firebase/FirestoreData.dart';
+import 'package:solmusic/Pages/Views/FooterView.dart';
 import 'package:solmusic/Style/Style.dart';
 import 'package:solmusic/Widget/RoundedButton.dart';
 import 'dart:ui' as ui;
@@ -634,106 +635,13 @@ class _DesktopPageState extends State<DesktopPage> {
           // ),
 
           //Footer
-          Container(
-            height: size.height * 0.80,
-            width: size.width,
-            color: Color(0xff0A183D),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 120),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 8.0),
-                    child: Text(
-                      "Open Hours",
-                      style: ThemText.footerText,
-                    ),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          footerText("Monday"),
-                          footerText("Tuesday"),
-                          footerText("Wednesday"),
-                          footerText("Thursday"),
-                          footerText("Friday"),
-                          footerText("Saturday"),
-                          footerText("Sunday"),
-                        ],
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                        ...widget.data?.openHours?.map((e) => footerText(e)) ?? [],
-                          // footerText("12:00-22:30"),
-                          // footerText("12:00-22:30"),
-                          // footerText("12:00-22:30"),
-                          // footerText("12:00-22:30"),
-                          // footerText("12:00-22:30"),
-                          // footerText("12:00-22:30"),
-                          // footerText("Closed"),
-                        ],
-                      ),
-                      Container(),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          footerText("Address"),
-                          footerText("Contact Us"),
-                          footerText("Email"),
-                          footerText("Terms of Use"),
-                          // footerText("SolMusic Originals"),
-                        ],
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          footerText(
-                              "14 Floor, Berlin Centre, Berlin, Germany"),
-                          footerText("+84123456789"),
-                          footerText("sol_restaurent@gmail.com"),
-                          footerText("Privacy"),
-                          // footerText("Contact Us"),
-                        ],
-                      )
-                    ],
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 12.0),
-                    child: Text(
-                      widget.data?.restaurantName ?? "" ,
-                      style: ThemText.footerText,
-                    ),
-                  ),
-                  Center(
-                    child: Text(
-                      "© Created By ${ widget.data?.restaurantName ?? "" }",
-                      style: ThemText.footerText,
-                    ),
-                  )
-                ],
-              ),
-            ),
-          ),
+          FooterView(size: size, data: widget.data)
         ],
       ),
     );
   }
 
-  Widget footerText(text) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8.0),
-      child: Text(
-        text,
-        style: ThemText.footerText,
-      ),
-    );
-  }
+
 
   void launchEmailSubmission() async {
     print('launchEmailSubmission');

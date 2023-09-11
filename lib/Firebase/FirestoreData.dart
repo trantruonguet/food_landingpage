@@ -18,6 +18,8 @@ class FirestoreData {
   final String? facebookLink;
   final String? instagramLink;
   final String? youtubeLink;
+  final String? address;
+  final String? email;
   final List<SectionData>? privacy;
   final List<SectionData>? aboutUs;
   final List<MenuItem>? menuItems;
@@ -34,6 +36,8 @@ class FirestoreData {
       this.facebookLink,
       this.instagramLink,
       this.youtubeLink,
+      this.address,
+      this.email,
       this.privacy,
       this.aboutUs,
       this.menuItems);

@@ -76,7 +76,7 @@ class _HomePageState extends State<HomePage> {
             if (type == HomeItem.LandingOage) LandingPage(data: data),
             if (type == HomeItem.Menupage) MenuPage(data: data,),
             if (type == HomeItem.BookPage) BookingPage(),
-            if (type == HomeItem.ContactPage) ContactPage(data: data?.aboutUs ?? [],),
+            if (type == HomeItem.ContactPage) ContactPage(data: data,),
           ],
         ),
       ),

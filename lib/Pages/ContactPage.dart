@@ -1,9 +1,11 @@
 import 'package:flutter/cupertino.dart';
+import 'package:solmusic/Firebase/FirestoreData.dart';
 import 'package:solmusic/Firebase/SectionData.dart';
+import 'package:solmusic/Pages/Views/FooterView.dart';
 import 'package:solmusic/Style/Style.dart';
 
 class ContactPage extends StatelessWidget {
-  final List<SectionData> data;
+  final FirestoreData? data;
 
   const ContactPage({super.key, required this.data});
   @override
@@ -31,22 +33,22 @@ class ContactPage extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            if ((data[index].title ?? "").isNotEmpty)
+                            if ((data?.aboutUs?[index].title ?? "").isNotEmpty)
                               Text(
-                                  "${data[index].title}",
+                                  "${data?.aboutUs?[index].title}",
                                   style: ThemText.bigTextTitle
                                       .copyWith(fontSize: 15)
                               ),
                             SizedBox(height: 16),
-                            if ((data[index].content ?? "").isNotEmpty)
+                            if ((data?.aboutUs?[index].content ?? "").isNotEmpty)
                               Text(
-                                  "${data[index].content}",
+                                  "${data?.aboutUs?[index].content}",
                                   // style: ThemText.bigTextTitle
                                   //     .copyWith(fontSize: 15)
                               ),
-                            if ((data[index].subContent ?? "").isNotEmpty)
+                            if ((data?.aboutUs?[index].subContent ?? "").isNotEmpty)
                               Text(
-                                "${data[index].subContent}",
+                                "${data?.aboutUs?[index].subContent}",
                                 // style: ThemText.bigTextTitle
                                 //     .copyWith(fontSize: 15)
                               )
@@ -58,9 +60,10 @@ class ContactPage extends StatelessWidget {
                     separatorBuilder: (context, index) {
                       return SizedBox(height: 8,);
                     },
-                    itemCount: data.length,
+                    itemCount: data?.aboutUs?.length ?? 0,
                     shrinkWrap: true,
                   ),
+                  FooterView(size: size,data: data)
                 ],
               ),
             ),
