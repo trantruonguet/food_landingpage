@@ -10,8 +10,6 @@ import 'package:solmusic/Style/Style.dart';
 import 'package:solmusic/Widget/RoundedButton.dart';
 import 'dart:ui' as ui;
 
-import 'package:url_launcher/url_launcher.dart';
-import 'package:flutter/foundation.dart';
 
 import 'Views/ImageMultipleSource.dart';
 
@@ -641,69 +639,4 @@ class _DesktopPageState extends State<DesktopPage> {
     );
   }
 
-
-
-  void launchEmailSubmission() async {
-    print('launchEmailSubmission');
-    // final Uri params = Uri(
-    //     scheme: 'mailto',
-    //     path: 'myOwnEmailAddress@gmail.com',
-    //     queryParameters: {
-    //       'subject': 'Default Subject',
-    //       'body': 'Default body'
-    //     }
-    // );
-    // String url = params.toString();
-    // if (await canLaunchUrl(params)) {
-    //   await launchUrl(params);
-    // } else {
-    //   print('Could not launch $url');
-    // }
-    String emailTo = Uri.encodeComponent("mail@fluttercampus.com");
-    String emailCC = '';
-    String emailSubject = Uri.encodeComponent("Hello Flutter");
-    String emailBody = Uri.encodeComponent("Hi! I'm Flutter Developer");
-    Uri mail = Uri.parse("mailto:$emailTo?subject=$emailSubject&body=$emailBody");
-    if (!isWebMobile()) {
-      mail = Uri.parse(buildEmailUrl(emailTo: emailTo, emailCC: emailCC, emailSubject: emailSubject, emailBody: emailBody));
-    } else {
-      // do nothing
-    }
-    if (await canLaunchUrl(mail)) {
-      await launchUrl(mail);
-      //email app opened
-    }else{
-      //email app is not opened
-    }
-
-  }
-
-  String buildEmailUrl({
-    required String emailTo,
-    required String emailCC,
-    required String emailSubject,
-    required String emailBody,
-  }) {
-    final baseUrl = "https://mail.google.com/mail?view=cm&tf=0";
-    final params = <String, String>{};
-
-    if (emailTo.isNotEmpty) params['to'] = emailTo;
-    if (emailCC.isNotEmpty) params['cc'] = emailCC;
-    if (emailSubject.isNotEmpty) params['su'] = emailSubject;
-    if (emailBody.isNotEmpty) params['body'] = emailBody;
-
-    final query = Uri(queryParameters: params).query;
-    final newUrl = '$baseUrl$query';
-
-    return newUrl;
-  }
-
-  bool isWebMobile() {
-    final isWebMobile = kIsWeb && (defaultTargetPlatform == TargetPlatform.iOS || defaultTargetPlatform == TargetPlatform.android || defaultTargetPlatform == TargetPlatform.linux);
-    print("kIsWeb = $kIsWeb");
-    print("defaultTargetPlatform = $defaultTargetPlatform");
-
-    print("isWebMobile = $isWebMobile");
-    return isWebMobile;
-  }
 }
