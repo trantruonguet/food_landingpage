@@ -34,83 +34,117 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            NavigationBarItem(
-              onLandingPagePress: () {
-                setState(() {
-                  if (type != HomeItem.LandingOage) {
-                    type = HomeItem.LandingOage;
-                    // type = HomeItem.BookPage;
-                  }
-                });
-              },
-              onMenuPagePress: () {
-                setState(() {
-                  if (type != HomeItem.Menupage) {
-                    type = HomeItem.Menupage;
-                  }
-                });
-              },
-              onBookPagePress: () {
-                setState(() {
-                  if (type != HomeItem.BookPage) {
-                    type = HomeItem.BookPage;
-                  }
-                });
-              },
-              onContactPagePress: () {
-                setState(() {
-                  if (type != HomeItem.ContactPage) {
-                    type = HomeItem.ContactPage;
-                  }
-                });
-              },
-            ),
-            if (type == HomeItem.LandingOage) LandingPage(data: data),
-            if (type == HomeItem.Menupage)
-              MenuPage(
-                data: data,
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              NavigationBarItem(
+                onLandingPagePress: () {
+                  setState(() {
+                    if (type != HomeItem.LandingOage) {
+                      type = HomeItem.LandingOage;
+                      // type = HomeItem.BookPage;
+                    }
+                  });
+                },
+                onMenuPagePress: () {
+                  setState(() {
+                    if (type != HomeItem.Menupage) {
+                      type = HomeItem.Menupage;
+                    }
+                  });
+                },
+                onBookPagePress: () {
+                  setState(() {
+                    if (type != HomeItem.BookPage) {
+                      type = HomeItem.BookPage;
+                    }
+                  });
+                },
+                onContactPagePress: () {
+                  setState(() {
+                    if (type != HomeItem.ContactPage) {
+                      type = HomeItem.ContactPage;
+                    }
+                  });
+                },
               ),
-            if (type == HomeItem.BookPage) BookingPage(),
-            if (type == HomeItem.ContactPage)
-              ContactPage(
-                data: data,
-              ),
-          ],
+              if (type == HomeItem.LandingOage) LandingPage(data: data),
+              if (type == HomeItem.Menupage)
+                MenuPage(
+                  data: data,
+                ),
+              if (type == HomeItem.BookPage) BookingPage(),
+              if (type == HomeItem.ContactPage)
+                ContactPage(
+                  data: data,
+                ),
+            ],
+          ),
         ),
-      ),
-      bottomSheet: cookiesAccepted
-          ? null
-          : Container(
-              height: 60,
-              width: double.infinity,
-              child: Center(
-                  child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text("You agree with our services"),
-                  SizedBox(
-                    width: 30,
-                  ),
-                  InkWell(
-                    onTap: () {
-                      setState(() {
-                        cookiesAccepted = true;
-                      });
-                    },
-                    child: Container(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 30, vertical: 8),
-                      color: Colors.grey,
-                      child: Text("Accept Cookies"),
-                    ),
-                  ),
-                ],
-              )),
+        bottomSheet: cookiesAccepted
+            ? null
+            : size.width >= 600
+                ? cookies()
+                : cookiesMobile());
+  }
+
+  cookies() {
+    return Container(
+      height: 60,
+      width: double.infinity,
+      child: Center(
+          child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text("You agree with our services"),
+          SizedBox(
+            width: 30,
+          ),
+          InkWell(
+            onTap: () {
+              setState(() {
+                cookiesAccepted = true;
+              });
+            },
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 30, vertical: 8),
+              color: Colors.grey,
+              child: Text("Accept Cookies"),
             ),
+          ),
+        ],
+      )),
+    );
+  }
+
+  cookiesMobile() {
+    return Container(
+      height: 60,
+      width: double.infinity,
+      child: Center(
+          child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text("You agree with our services"),
+          SizedBox(
+            width: 10,
+          ),
+          InkWell(
+            onTap: () {
+              setState(() {
+                cookiesAccepted = true;
+              });
+            },
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+              color: Colors.grey,
+              child: Text("Accept Cookies"),
+            ),
+          ),
+        ],
+      )),
     );
   }
 }

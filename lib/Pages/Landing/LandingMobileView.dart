@@ -29,59 +29,63 @@ class _LandingMobileViewState extends State<LandingMobileView> {
   Widget customFlexible(String text, String labelText, String subText,
       var image, bool imageLeft, bool isTheLast) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+      padding: const EdgeInsets.symmetric(horizontal: 4.0),
       child: Column(
         children: [
-          Row(
+          Column(
             children: [
-              if (imageLeft)
-                Flexible(
-                  flex: 1,
-                  child: ImageMultipleSource(imageUrl: image),
-                ),
-              if (imageLeft)
-                SizedBox(
-                  width: 48,
-                ),
-              Flexible(
-                flex: 1,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
+              Row(
+                children: [
+                  if (imageLeft)
+                    Flexible(
+                      flex: 1,
+                      child: ImageMultipleSource(imageUrl: image),
+                    ),
+                  if (imageLeft)
                     SizedBox(
-                      height: 20.0,
+                      width: 12,
                     ),
-                    Text(
-                      text,
-                      style: ThemText.createText,
+                  Flexible(
+                    flex: 1,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        SizedBox(
+                          height: 20.0,
+                        ),
+                        Text(
+                          text,
+                          style: ThemText.createTextMobile,
+                        ),
+                      ],
                     ),
+                  ),
+                  if (!imageLeft)
                     SizedBox(
-                      height: 20.0,
+                      width: 48,
                     ),
-                    Text(
-                      labelText,
-                      style: ThemText.createText,
+                  if (!imageLeft)
+                    Flexible(
+                      flex: 1,
+                      child: ImageMultipleSource(imageUrl: image),
                     ),
-                    SizedBox(
-                      height: 20.0,
-                    ),
-                    Text(
-                      subText,
-                      style: ThemText.howitworkDec,
-                    ),
-                  ],
-                ),
+                ],
               ),
-              if (!imageLeft)
-                SizedBox(
-                  width: 48,
-                ),
-              if (!imageLeft)
-                Flexible(
-                  flex: 1,
-                  child: ImageMultipleSource(imageUrl: image),
-                ),
+              SizedBox(
+                height: 20.0,
+              ),
+              Text(
+                labelText,
+                style: ThemText.createTextMobile,
+              ),
+              SizedBox(
+                height: 20.0,
+              ),
+              Text(
+                subText,
+                style: ThemText.howitworkDec,
+              ),
             ],
           ),
           if (!isTheLast)
@@ -115,7 +119,7 @@ class _LandingMobileViewState extends State<LandingMobileView> {
 
   Widget customCard(text, description, img) {
     return Padding(
-      padding: const EdgeInsets.all(24.0),
+      padding: const EdgeInsets.all(4.0),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -137,7 +141,7 @@ class _LandingMobileViewState extends State<LandingMobileView> {
           ),
           Text(
             text,
-            style: ThemText.cardText,
+            style: ThemText.cardTextMobile,
             textAlign: TextAlign.center,
           ),
           SizedBox(
@@ -145,7 +149,7 @@ class _LandingMobileViewState extends State<LandingMobileView> {
           ),
           Text(
             description,
-            style: ThemText.describtionText,
+            style: ThemText.describtionTextMobile,
             textAlign: TextAlign.center,
           )
         ],
@@ -210,28 +214,39 @@ class _LandingMobileViewState extends State<LandingMobileView> {
         children: [
           //Home Music for everyone
           Container(
-            height: size.height,
+            // height: size.height,
             width: size.width,
             color: Color(0xff0A183D),
             child: Row(
               children: [
                 Container(
                   alignment: Alignment.topCenter,
-                  width: size.width / 2,
+                  width: size.width,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Container(
-                        width: size.width * 0.40,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              widget.data?.overview?.title ?? "",
-                              style: ThemText.homewhiteTitle,
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Container(
+                            width: size.width * 0.40,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  widget.data?.overview?.title ?? "",
+                                  style: ThemText.homewhiteTitleMobile,
+                                ),
+                              ],
                             ),
-                          ],
-                        ),
+                          ),
+                          Container(
+                            width: size.width / 2,
+                            child: ImageMultipleSource(
+                                imageUrl:
+                                    widget.data?.overview?.imageUrl ?? ""),
+                          ),
+                        ],
                       ),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
@@ -239,7 +254,6 @@ class _LandingMobileViewState extends State<LandingMobileView> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Container(
-                                width: size.width * 0.40,
                                 alignment: Alignment.centerLeft,
                                 child: Wrap(
                                   children: [
@@ -250,7 +264,6 @@ class _LandingMobileViewState extends State<LandingMobileView> {
                                   ],
                                 )),
                             Container(
-                                width: size.width * 0.40,
                                 alignment: Alignment.centerLeft,
                                 child: Wrap(
                                   children: [
@@ -263,32 +276,25 @@ class _LandingMobileViewState extends State<LandingMobileView> {
                           ],
                         ),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 48.0,
-                          vertical: 24.0,
-                        ),
-                        child: Row(
-                          children: [
-                            RoundedButton(
-                              color: Color(0xffFC0254),
-                              textTitle:
-                                  widget.data?.overview?.buttonTitle ?? "",
-                              onPressed: () {},
-                            ),
-                          ],
+                      Center(
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 48,
+                            vertical: 24.0,
+                          ),
+                          child: Row(
+                            children: [
+                              RoundedButton(
+                                color: Color(0xffFC0254),
+                                textTitle:
+                                    widget.data?.overview?.buttonTitle ?? "",
+                                onPressed: () {},
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ],
-                  ),
-                ),
-                Container(
-                  width: size.width / 2,
-                  alignment: Alignment.topCenter,
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 16.0),
-                    child: ImageMultipleSource(
-                        imageUrl: widget.data?.overview?.imageUrl ?? ""),
                   ),
                 ),
               ],
@@ -313,15 +319,15 @@ class _LandingMobileViewState extends State<LandingMobileView> {
                       padding: const EdgeInsets.symmetric(horizontal: 16.0),
                       child: Text(
                         "About our menus",
-                        style: ThemText.whititleText,
+                        style: ThemText.whititleTextMobile,
                       ),
                     ),
                   ),
                   SizedBox(
-                    height: 48.0,
+                    height: 12.0,
                   ),
                   Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       for (final (index, item)
                           in widget.data?.menus?.indexed ?? [].indexed)
@@ -341,18 +347,18 @@ class _LandingMobileViewState extends State<LandingMobileView> {
 
           //Our Concept
           Container(
-            height: size.height * 1.20,
+            height: size.height / 1.1,
             width: size.width,
             color: Colors.white,
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 32.0),
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Expanded(
                     flex: 2,
                     child: Container(
-                      child: Row(
+                      child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           ...widget.data?.horizontalSlogans?.map(
@@ -390,7 +396,7 @@ class _LandingMobileViewState extends State<LandingMobileView> {
             child: HtmlElementView(viewType: htmlId),
           ),
           //Footer
-          FooterView(size: size, data: widget.data)
+          FooterMobileView(size: size, data: widget.data)
         ],
       ),
     );

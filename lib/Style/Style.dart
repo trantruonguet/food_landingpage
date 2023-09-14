@@ -21,6 +21,12 @@ abstract class ThemText {
     letterSpacing: 2.75,
   );
 
+  static const TextStyle navBarWhiteTabMobile = TextStyle(
+    color: Colors.white,
+    fontSize: 14.0,
+    letterSpacing: 2,
+  );
+
   static const TextStyle helpGreyText = TextStyle(
     color: Colors.grey,
     fontSize: 16.0,
@@ -45,6 +51,12 @@ abstract class ThemText {
   static const TextStyle homewhiteTitle = TextStyle(
     color: Colors.white,
     fontSize: 68.0,
+    fontWeight: FontWeight.w600,
+  );
+
+  static const TextStyle homewhiteTitleMobile = TextStyle(
+    color: Colors.white,
+    fontSize: 20.0,
     fontWeight: FontWeight.w600,
   );
 
@@ -74,6 +86,14 @@ abstract class ThemText {
     fontWeight: FontWeight.w500,
   );
 
+  static const TextStyle describtionTextMobile = TextStyle(
+    color: Colors.grey,
+    fontSize: 14.0,
+    wordSpacing: 1.75,
+    letterSpacing: 1.75,
+    fontWeight: FontWeight.w500,
+  );
+
   static const TextStyle whititleText = TextStyle(
     color: Colors.white,
     fontSize: 60.0,
@@ -81,9 +101,21 @@ abstract class ThemText {
     letterSpacing: 0.75,
   );
 
+  static const TextStyle whititleTextMobile = TextStyle(
+    color: Colors.white,
+    fontSize: 20.0,
+    fontWeight: FontWeight.w600,
+    letterSpacing: 0.75,
+  );
+
   static const TextStyle createText = TextStyle(
     color: Colors.white,
     fontSize: 28.0,
+  );
+
+  static const TextStyle createTextMobile = TextStyle(
+    color: Colors.white,
+    fontSize: 18.0,
   );
 
   static const TextStyle whitexlText = TextStyle(
@@ -109,8 +141,21 @@ abstract class ThemText {
     fontWeight: FontWeight.w600,
   );
 
-  static const TextStyle footerText =
-      TextStyle(color: Colors.grey, fontSize: 14.0);
+  static const TextStyle cardTextMobile = TextStyle(
+    color: Color(0xff0A183D),
+    fontSize: 16.0,
+    fontWeight: FontWeight.w600,
+  );
+
+  static const TextStyle footerText = TextStyle(
+    color: Colors.grey,
+    fontSize: 14.0,
+  );
+
+  static const TextStyle footerTextMoible = TextStyle(
+    color: Colors.grey,
+    fontSize: 12.0,
+  );
 
   static const TextStyle pinkText = TextStyle(
       color: Colors.pink, fontSize: 20.0, fontWeight: FontWeight.w600);

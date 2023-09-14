@@ -20,7 +20,7 @@ class _LandingPageState extends State<LandingPage> {
         if (constraints.maxWidth > 1200) {
           //For Desktop Screen
           return LandingDesktopView(data: widget.data);
-        } else if (constraints.maxWidth >= 800 &&
+        } else if (constraints.maxWidth >= 600 &&
             constraints.maxWidth <= 1200) {
           //for Tablet Screen
           return LandingDesktopView(data: widget.data);
