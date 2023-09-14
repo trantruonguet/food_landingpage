@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:solmusic/Firebase/FirestoreDBRepo.dart';
 import 'package:solmusic/Pages/HomePage.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:solmusic/Pages/LandingPage.dart';
 import 'firebase_options.dart';
 
 Future<void> main() async {
@@ -11,7 +10,7 @@ Future<void> main() async {
   );
   runApp(MyApp());
 }
- 
+
 class MyApp extends StatefulWidget {
   @override
   State<MyApp> createState() => _MyAppState();
@@ -22,9 +21,7 @@ class _MyAppState extends State<MyApp> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-
   }
 
   void getRestaurantName() async {
@@ -35,6 +32,7 @@ class _MyAppState extends State<MyApp> {
       restaurantName = restaurantName;
     });
   }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

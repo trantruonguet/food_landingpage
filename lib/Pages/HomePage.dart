@@ -5,9 +5,7 @@ import 'package:solmusic/Pages/BookingPage.dart';
 import 'package:solmusic/Pages/ContactPage.dart';
 import 'package:solmusic/Pages/LandingPage.dart';
 import 'package:solmusic/Pages/MenuPage.dart';
-
 import '../Firebase/FirestoreDBRepo.dart';
-import 'ContactPage.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -23,16 +21,14 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     getData();
   }
 
   void getData() async {
     data = await dbRepo.getData();
-    print('HomePage data = $data');
     setState(() {
-      data: data;
+      this.data = data;
     });
   }
 
@@ -74,9 +70,15 @@ class _HomePageState extends State<HomePage> {
               },
             ),
             if (type == HomeItem.LandingOage) LandingPage(data: data),
-            if (type == HomeItem.Menupage) MenuPage(data: data,),
+            if (type == HomeItem.Menupage)
+              MenuPage(
+                data: data,
+              ),
             if (type == HomeItem.BookPage) BookingPage(),
-            if (type == HomeItem.ContactPage) ContactPage(data: data,),
+            if (type == HomeItem.ContactPage)
+              ContactPage(
+                data: data,
+              ),
           ],
         ),
       ),

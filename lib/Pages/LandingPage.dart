@@ -2,14 +2,11 @@
 import 'dart:html';
 import 'package:flutter/material.dart';
 import 'package:google_maps/google_maps.dart' as mapGG;
-import 'package:google_maps_flutter_web/google_maps_flutter_web.dart';
-import 'package:solmusic/Firebase/FirestoreDBRepo.dart';
 import 'package:solmusic/Firebase/FirestoreData.dart';
 import 'package:solmusic/Pages/Views/FooterView.dart';
 import 'package:solmusic/Style/Style.dart';
 import 'package:solmusic/Widget/RoundedButton.dart';
 import 'dart:ui' as ui;
-
 
 import 'Views/ImageMultipleSource.dart';
 
@@ -53,15 +50,13 @@ class DesktopPage extends StatefulWidget {
 }
 
 class _DesktopPageState extends State<DesktopPage> {
-
   _DesktopPageState();
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-
   }
+
   Widget customFlexible(String text, String labelText, String subText,
       var image, bool imageLeft, bool isTheLast) {
     return Padding(
@@ -118,7 +113,6 @@ class _DesktopPageState extends State<DesktopPage> {
                   flex: 1,
                   child: ImageMultipleSource(imageUrl: image),
                 ),
-
             ],
           ),
           if (!isTheLast)
@@ -127,7 +121,6 @@ class _DesktopPageState extends State<DesktopPage> {
             )
         ],
       ),
-      // ),
     );
   }
 
@@ -243,7 +236,6 @@ class _DesktopPageState extends State<DesktopPage> {
       return elem;
     });
 
-
     return SingleChildScrollView(
       child: Column(
         children: [
@@ -266,9 +258,9 @@ class _DesktopPageState extends State<DesktopPage> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                            widget.data?.overview?.title ?? "",
-                            style: ThemText.homewhiteTitle,
-                          ),
+                              widget.data?.overview?.title ?? "",
+                              style: ThemText.homewhiteTitle,
+                            ),
                           ],
                         ),
                       ),
@@ -311,15 +303,10 @@ class _DesktopPageState extends State<DesktopPage> {
                           children: [
                             RoundedButton(
                               color: Color(0xffFC0254),
-                              textTitle: widget.data?.overview?.buttonTitle ?? "",
-                              onPressed: () {
-
-                              },
+                              textTitle:
+                                  widget.data?.overview?.buttonTitle ?? "",
+                              onPressed: () {},
                             ),
-                            // RoundedButton(
-                            //   color: Color(0xff383B70),
-                            //   textTitle: "start free trial",
-                            // ),
                           ],
                         ),
                       ),
@@ -331,69 +318,13 @@ class _DesktopPageState extends State<DesktopPage> {
                   alignment: Alignment.topCenter,
                   child: Padding(
                     padding: const EdgeInsets.symmetric(vertical: 16.0),
-                    child: ImageMultipleSource(imageUrl: widget.data?.overview?.imageUrl ?? ""),
+                    child: ImageMultipleSource(
+                        imageUrl: widget.data?.overview?.imageUrl ?? ""),
                   ),
                 ),
               ],
             ),
           ),
-
-          //Unlimited Access
-          // Container(
-          //   height: size.height * 0.74,
-          //   width: size.width,
-          //   color: Colors.white,
-          //   child: Row(
-          //     children: [
-          //       Container(
-          //         alignment: Alignment.center,
-          //         width: size.width / 2,
-          //         child: Padding(
-          //           padding: const EdgeInsets.symmetric(horizontal: 26.0),
-          //           child: Wrap(
-          //             children: [
-          //               Text(
-          //                 "Welcome",
-          //                 style: ThemText.bigTextTitle,
-          //               )
-          //             ],
-          //           ),
-          //         ),
-          //       ),
-          //       Container(
-          //         width: size.width / 2,
-          //         child: Column(
-          //           crossAxisAlignment: CrossAxisAlignment.start,
-          //           mainAxisAlignment: MainAxisAlignment.center,
-          //           children: [
-          //             Wrap(
-          //               children: [
-          //                 Padding(
-          //                   padding:
-          //                       const EdgeInsets.symmetric(horizontal: 16.0),
-          //                   child: Text(
-          //                     "With us you will experience our philosophy and enjoy the unique quality of our original Japanese sushi. \nWe serve a large selection of first-class sushi and Vietnamese dishes in a cozy East Asian ambience. \nYou can also rely on us when it comes to choosing drinks. Whether you want a homemade iced tea, a fresh mint tea with ginger or an Asian beer - our drinks menu offers numerous specialties as well as well-known alcoholic and soft drinks.",
-          //                     style: ThemText.describtionText,
-          //                   ),
-          //                 ),
-          //               ],
-          //             ),
-          //             SizedBox(
-          //               height: 22.0,
-          //             ),
-          //             RoundedButton(
-          //               color: Color(0xff383B70),
-          //               textTitle: "Our airy and cozy space will be especially suitable for you and your beloved one. \nWe are looking forward to your visit!",
-          //               onPressed: () {
-          //
-          //               }
-          //             ),
-          //           ],
-          //         ),
-          //       )
-          //     ],
-          //   ),
-          // ),
 
           //How it works
           Container(
@@ -423,7 +354,8 @@ class _DesktopPageState extends State<DesktopPage> {
                   Column(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      for (final (index, item) in widget.data?.menus?.indexed ?? [].indexed)
+                      for (final (index, item)
+                          in widget.data?.menus?.indexed ?? [].indexed)
                         customFlexible(
                             item.title ?? "",
                             item.content ?? "",
@@ -454,36 +386,16 @@ class _DesktopPageState extends State<DesktopPage> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
-                          ...widget.data?.horizontalSlogans?.map((e) =>
-                            Flexible(
-                            flex: 1,
-                            child: customCard(
-                            e.title,
-                            e.content,
-                            e.imageUrl,
-                            )),
-                          ) ?? [],
-                          // Flexible(
-                          //     flex: 1,
-                          //     child: customCard(
-                          //       'THE BEST RESTAURANT',
-                          //       "With us you not only enjoy delicious food, but also a diverse Asian cuisine. \nFor all food bloggers: Take a photo and share it immediately on Instagram - no problem, we have free WiFi",
-                          //       'images/pic2.jfif',
-                          //     )),
-                          // Flexible(
-                          //     flex: 1,
-                          //     child: customCard(
-                          //       'PERFECT FOR FAMILY',
-                          //       "Our air is filled with aroma. \nIf you are looking for a spacious, comfortable, luxurious and cozy place to meet up with friends and family, VietStreet Restaurant is the best choice",
-                          //       'images/pic3.jfif',
-                          //     )),
-                          // Flexible(
-                          //     flex: 1,
-                          //     child: customCard(
-                          //       'FRESH EVERY DAY',
-                          //       'Our dishes are prepared exclusively with fresh and high-quality ingredients. \nYour health and satisfaction is always our top priority',
-                          //       'images/pic4.jfif',
-                          //     )),
+                          ...widget.data?.horizontalSlogans?.map(
+                                (e) => Flexible(
+                                    flex: 1,
+                                    child: customCard(
+                                      e.title,
+                                      e.content,
+                                      e.imageUrl,
+                                    )),
+                              ) ??
+                              [],
                         ],
                       ),
                     ),
@@ -638,5 +550,4 @@ class _DesktopPageState extends State<DesktopPage> {
       ),
     );
   }
-
 }
