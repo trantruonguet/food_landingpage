@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:solmusic/generated/assets.dart';
+import 'package:solmusic/Asset/assets.dart';
 import 'FirestoreData.dart';
 import 'dart:convert';
 

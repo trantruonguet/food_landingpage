@@ -1,56 +1,25 @@
 // ignore: avoid_web_libraries_in_flutter
 import 'dart:html';
 import 'package:flutter/material.dart';
-import 'package:google_maps/google_maps.dart' as mapGG;
 import 'package:solmusic/Firebase/FirestoreData.dart';
 import 'package:solmusic/Pages/Views/FooterView.dart';
+import 'package:solmusic/Pages/Views/ImageMultipleSource.dart';
 import 'package:solmusic/Style/Style.dart';
-import 'package:solmusic/Widget/RoundedButton.dart';
 import 'dart:ui' as ui;
+import 'package:google_maps/google_maps.dart' as mapGG;
+import 'package:solmusic/Widget/RoundedButton.dart';
 
-import 'Views/ImageMultipleSource.dart';
-
-class LandingPage extends StatefulWidget {
+class LandingDesktopView extends StatefulWidget {
   final FirestoreData? data;
 
-  const LandingPage({super.key, this.data});
+  const LandingDesktopView({super.key, required this.data});
 
   @override
-  _LandingPageState createState() => _LandingPageState();
+  _LandingDesktopViewState createState() => _LandingDesktopViewState();
 }
 
-class _LandingPageState extends State<LandingPage> {
-  @override
-  Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: (BuildContext context, BoxConstraints constraints) {
-        if (constraints.maxWidth > 1200) {
-          //For Desktop Screen
-          return DesktopPage(data: widget.data);
-        } else if (constraints.maxWidth >= 800 &&
-            constraints.maxWidth <= 1200) {
-          //for Tablet Screen
-          return DesktopPage(data: widget.data);
-        } else {
-          //for mobile Screen
-          return DesktopPage(data: widget.data);
-        }
-      },
-    );
-  }
-}
-
-class DesktopPage extends StatefulWidget {
-  final FirestoreData? data;
-
-  const DesktopPage({super.key, required this.data});
-
-  @override
-  _DesktopPageState createState() => _DesktopPageState();
-}
-
-class _DesktopPageState extends State<DesktopPage> {
-  _DesktopPageState();
+class _LandingDesktopViewState extends State<LandingDesktopView> {
+  _LandingDesktopViewState();
 
   @override
   void initState() {
@@ -420,130 +389,6 @@ class _DesktopPageState extends State<DesktopPage> {
             width: size.width,
             child: HtmlElementView(viewType: htmlId),
           ),
-          //Subscription
-          // Container(
-          //   alignment: Alignment.center,
-          //   height: size.height,
-          //   width: size.width,
-          //   color: Color(0xff0A183D),
-          //   child: Row(
-          //     children: [
-          //       Expanded(
-          //         flex: 1,
-          //         child: Container(
-          //           child: Padding(
-          //             padding: const EdgeInsets.symmetric(horizontal: 32.0),
-          //             child: Column(
-          //               mainAxisAlignment: MainAxisAlignment.center,
-          //               crossAxisAlignment: CrossAxisAlignment.start,
-          //               children: [
-          //                 Padding(
-          //                   padding:
-          //                       const EdgeInsets.symmetric(horizontal: 16.0),
-          //                   child: Wrap(
-          //                     children: [
-          //                       Text(
-          //                         "Subscription from \$15/month",
-          //                         style: ThemText.whititleText,
-          //                       ),
-          //                     ],
-          //                   ),
-          //                 ),
-          //                 SizedBox(
-          //                   height: 18.0,
-          //                 ),
-          //                 Padding(
-          //                   padding:
-          //                       const EdgeInsets.symmetric(horizontal: 16.0),
-          //                   child: Wrap(
-          //                     children: [
-          //                       Text(
-          //                         "Start a free trial now",
-          //                         style: ThemText.pinkText,
-          //                       ),
-          //                     ],
-          //                   ),
-          //                 ),
-          //                 SizedBox(
-          //                   height: 18.0,
-          //                 ),
-          //                 Padding(
-          //                   padding:
-          //                       const EdgeInsets.symmetric(horizontal: 16.0),
-          //                   child: Wrap(
-          //                     children: [
-          //                       Text(
-          //                         "SConsectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-          //                         style: ThemText.describtionTex,
-          //                       ),
-          //                     ],
-          //                   ),
-          //                 ),
-          //                 SizedBox(
-          //                   height: 20.0,
-          //                 ),
-          //                 RoundedButton(
-          //                   color: Color(0xffF24854),
-          //                   textTitle: 'try it now',
-          //                 ),
-          //               ],
-          //             ),
-          //           ),
-          //         ),
-          //       ),
-          //       Expanded(
-          //         child: Padding(
-          //           padding: const EdgeInsets.symmetric(horizontal: 60.0),
-          //           child: Card(
-          //             shape: RoundedRectangleBorder(
-          //               borderRadius: BorderRadius.circular(16.0),
-          //             ),
-          //             color: Color(0xff1B2949),
-          //             child: Container(
-          //               alignment: Alignment.center,
-          //               height: MediaQuery.of(context).size.height * 0.65,
-          //               child: Padding(
-          //                 padding: const EdgeInsets.symmetric(horizontal: 32.0),
-          //                 child: Column(
-          //                   mainAxisAlignment: MainAxisAlignment.center,
-          //                   children: [
-          //                     customCheckBox('Play any track', true),
-          //                     customCheckBox('Listen offline', true),
-          //                     customCheckBox('No ad interruptions', true),
-          //                     customCheckBox('Unlimited skips', true),
-          //                     customCheckBox('High quality audio', true),
-          //                     customCheckBox('Shuffle play', true),
-          //                   ],
-          //                 ),
-          //               ),
-          //             ),
-          //           ),
-          //         ),
-          //       ),
-          //     ],
-          //   ),
-          // ),
-
-          // //People
-          // Container(
-          //   height: size.height * 0.65,
-          //   width: size.width,
-          //   color: Colors.white,
-          //   child: Row(
-          //     mainAxisAlignment: MainAxisAlignment.spaceAround,
-          //     children: [
-          //       customCircleAvtar("No ad interruptions", "images/pic6.jfif",
-          //           "Consectetur adipiscing elit"),
-          //       customCircleAvtar("High Quality", "images/pic7.jfif",
-          //           "Ectetur adipiscing elit"),
-          //       customCircleAvtar("Listen Offline", "images/pic8.jfif",
-          //           "Sed do eiusmod tempor"),
-          //       customCircleAvtar(
-          //           "Download Music", "images/pic9.jfif", "Adipiscing elit")
-          //     ],
-          //   ),
-          // ),
-
           //Footer
           FooterView(size: size, data: widget.data)
         ],
