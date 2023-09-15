@@ -44,7 +44,6 @@ class _HomePageState extends State<HomePage> {
                   setState(() {
                     if (type != HomeItem.LandingOage) {
                       type = HomeItem.LandingOage;
-                      // type = HomeItem.BookPage;
                     }
                   });
                 },
