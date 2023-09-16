@@ -38,8 +38,12 @@ class _ImageMultipleSourceState extends State<ImageMultipleSource> {
   Widget build(BuildContext context) {
     if (widget.imageUrl.contains("http")) {
       if (widget.size != null) {
-        return Image.network(widget.imageUrl,
-            width: widget.size?.width ?? 0, height: widget.size?.height ?? 0);
+        return Image.network(
+          widget.imageUrl,
+          width: widget.size?.width ?? 0,
+          height: widget.size?.height ?? 0,
+          fit: BoxFit.fill,
+        );
       } else {
         return Image.network(widget.imageUrl);
       }
@@ -47,15 +51,23 @@ class _ImageMultipleSourceState extends State<ImageMultipleSource> {
 
     if (hasLocalAsset) {
       if (widget.size != null) {
-        return Image.asset(widget.imageUrl,
-            width: widget.size?.width ?? 0, height: widget.size?.height ?? 0);
+        return Image.asset(
+          widget.imageUrl,
+          width: widget.size?.width ?? 0,
+          height: widget.size?.height ?? 0,
+          fit: BoxFit.fill,
+        );
       } else {
         return Image.asset(widget.imageUrl);
       }
     }
     if (widget.size != null) {
-      return Image.asset("images/placeholder.jpeg",
-          width: widget.size?.width ?? 0, height: widget.size?.height ?? 0);
+      return Image.asset(
+        "images/placeholder.jpeg",
+        width: widget.size?.width ?? 0,
+        height: widget.size?.height ?? 0,
+        fit: BoxFit.fill,
+      );
     } else {
       return Image.asset("images/placeholder.jpeg");
     }

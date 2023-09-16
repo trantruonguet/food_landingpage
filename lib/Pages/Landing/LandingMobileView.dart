@@ -28,6 +28,7 @@ class _LandingMobileViewState extends State<LandingMobileView> {
 
   Widget customFlexible(String text, String labelText, String subText,
       var image, bool imageLeft, bool isTheLast) {
+    var size = MediaQuery.of(context).size;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 4.0),
       child: Column(
@@ -35,11 +36,15 @@ class _LandingMobileViewState extends State<LandingMobileView> {
           Column(
             children: [
               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   if (imageLeft)
                     Flexible(
                       flex: 1,
-                      child: ImageMultipleSource(imageUrl: image),
+                      child: ImageMultipleSource(
+                        imageUrl: image,
+                        size: Size(size.width * 0.3, size.width * 0.35),
+                      ),
                     ),
                   if (imageLeft)
                     SizedBox(
@@ -62,13 +67,12 @@ class _LandingMobileViewState extends State<LandingMobileView> {
                     ),
                   ),
                   if (!imageLeft)
-                    SizedBox(
-                      width: 48,
-                    ),
-                  if (!imageLeft)
                     Flexible(
                       flex: 1,
-                      child: ImageMultipleSource(imageUrl: image),
+                      child: ImageMultipleSource(
+                        imageUrl: image,
+                        size: Size(size.width * 0.3, size.width * 0.35),
+                      ),
                     ),
                 ],
               ),
@@ -123,19 +127,19 @@ class _LandingMobileViewState extends State<LandingMobileView> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          // Container(
-          //   decoration: BoxDecoration(
-          //       borderRadius: BorderRadius.circular(16.0), color: Colors.teal),
-          //   height: MediaQuery.of(context).size.height * 0.47,
-          //   width: MediaQuery.of(context).size.width * 0.22,
-          //   child: ClipRRect(
-          //     borderRadius: BorderRadius.circular(16.0),
-          //     child: Image(
-          //       fit: BoxFit.cover,
-          //       image: AssetImage(img),
-          //     ),
-          //   ),
-          // ),
+          Container(
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(16.0), color: Colors.teal),
+            height: MediaQuery.of(context).size.width * 0.5,
+            width: MediaQuery.of(context).size.width * 0.7,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(16.0),
+              child: Image(
+                fit: BoxFit.cover,
+                image: AssetImage(img),
+              ),
+            ),
+          ),
           SizedBox(
             height: 16.0,
           ),
@@ -347,7 +351,7 @@ class _LandingMobileViewState extends State<LandingMobileView> {
 
           //Our Concept
           Container(
-            height: size.height / 1.1,
+            height: size.height * 1.5,
             width: size.width,
             color: Colors.white,
             child: Padding(

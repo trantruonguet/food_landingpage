@@ -28,16 +28,21 @@ class _LandingDesktopViewState extends State<LandingDesktopView> {
 
   Widget customFlexible(String text, String labelText, String subText,
       var image, bool imageLeft, bool isTheLast) {
+    var size = MediaQuery.of(context).size;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
       child: Column(
         children: [
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               if (imageLeft)
                 Flexible(
                   flex: 1,
-                  child: ImageMultipleSource(imageUrl: image),
+                  child: ImageMultipleSource(
+                    imageUrl: image,
+                    size: Size(size.width * 0.3, size.width * 0.3),
+                  ),
                 ),
               if (imageLeft)
                 SizedBox(
@@ -73,14 +78,14 @@ class _LandingDesktopViewState extends State<LandingDesktopView> {
                   ],
                 ),
               ),
-              if (!imageLeft)
-                SizedBox(
-                  width: 48,
-                ),
+              // if (!imageLeft) Spacer(),
               if (!imageLeft)
                 Flexible(
                   flex: 1,
-                  child: ImageMultipleSource(imageUrl: image),
+                  child: ImageMultipleSource(
+                    imageUrl: image,
+                    size: Size(size.width * 0.3, size.width * 0.3),
+                  ),
                 ),
             ],
           ),
@@ -119,19 +124,19 @@ class _LandingDesktopViewState extends State<LandingDesktopView> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          // Container(
-          //   decoration: BoxDecoration(
-          //       borderRadius: BorderRadius.circular(16.0), color: Colors.teal),
-          //   height: MediaQuery.of(context).size.height * 0.47,
-          //   width: MediaQuery.of(context).size.width * 0.22,
-          //   child: ClipRRect(
-          //     borderRadius: BorderRadius.circular(16.0),
-          //     child: Image(
-          //       fit: BoxFit.cover,
-          //       image: AssetImage(img),
-          //     ),
-          //   ),
-          // ),
+          Container(
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(16.0), color: Colors.teal),
+            height: MediaQuery.of(context).size.height * 0.47,
+            width: MediaQuery.of(context).size.width * 0.22,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(16.0),
+              child: Image(
+                fit: BoxFit.cover,
+                image: AssetImage(img),
+              ),
+            ),
+          ),
           SizedBox(
             height: 16.0,
           ),
@@ -333,7 +338,10 @@ class _LandingDesktopViewState extends State<LandingDesktopView> {
                             index % 2 == 0,
                             index == (widget.data?.menus?.length ?? 0) - 1)
                     ],
-                  )
+                  ),
+                  SizedBox(
+                    height: 48.0,
+                  ),
                 ],
               ),
             ),
