@@ -193,8 +193,8 @@ class _LandingDesktopViewState extends State<LandingDesktopView> {
     ui.platformViewRegistry.registerViewFactory(htmlId, (int viewId) {
       final mapOptions = mapGG.MapOptions()
         ..zoom = 15.0
-        ..center = mapGG.LatLng(35.7560423, 139.7803552);
-
+        ..center = mapGG.LatLng(double.parse(widget.data?.latitude ?? "0"), double.parse(widget.data?.longitude ?? "0"));
+        // ..center = mapGG.LatLng(double.parse( "15.5"), double.parse("15.5"));
       final elem = DivElement()..id = htmlId;
       final map = mapGG.GMap(elem, mapOptions);
 
@@ -215,85 +215,91 @@ class _LandingDesktopViewState extends State<LandingDesktopView> {
         children: [
           //Home Music for everyone
           Container(
-            height: size.height,
+            // height: size.height,
             width: size.width,
             color: Color(0xff0A183D),
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Container(
-                  alignment: Alignment.topCenter,
-                  width: size.width / 2,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Container(
-                        width: size.width * 0.40,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              widget.data?.overview?.title ?? "",
-                              style: ThemText.homewhiteTitle,
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 32),
+                    child: Container(
+                      alignment: Alignment.topCenter,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Container(
+                            width: size.width * 0.40,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  widget.data?.overview?.title ?? "",
+                                  style: ThemText.homewhiteTitle,
+                                ),
+                              ],
                             ),
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Container(
-                                width: size.width * 0.40,
-                                alignment: Alignment.centerLeft,
-                                child: Wrap(
-                                  children: [
-                                    Text(
-                                      widget.data?.overview?.content ?? "",
-                                      style: ThemText.homeDescTitle,
-                                    ),
-                                  ],
-                                )),
-                            Container(
-                                width: size.width * 0.40,
-                                alignment: Alignment.centerLeft,
-                                child: Wrap(
-                                  children: [
-                                    Text(
-                                      widget.data?.overview?.subContent ?? "",
-                                      style: ThemText.homeDescTitle,
-                                    ),
-                                  ],
-                                )),
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 48.0,
-                          vertical: 24.0,
-                        ),
-                        child: Row(
-                          children: [
-                            RoundedButton(
-                              color: Color(0xffFC0254),
-                              textTitle:
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Container(
+                                    width: size.width * 0.40,
+                                    alignment: Alignment.centerLeft,
+                                    child: Wrap(
+                                      children: [
+                                        Text(
+                                          widget.data?.overview?.content ?? "",
+                                          style: ThemText.homeDescTitle,
+                                        ),
+                                      ],
+                                    )),
+                                Container(
+                                    width: size.width * 0.40,
+                                    alignment: Alignment.centerLeft,
+                                    child: Wrap(
+                                      children: [
+                                        Text(
+                                          widget.data?.overview?.subContent ?? "",
+                                          style: ThemText.homeDescTitle,
+                                        ),
+                                      ],
+                                    )),
+                              ],
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 48.0,
+                              vertical: 24.0,
+                            ),
+                            child: Row(
+                              children: [
+                                RoundedButton(
+                                  color: Color(0xffFC0254),
+                                  textTitle:
                                   widget.data?.overview?.buttonTitle ?? "",
-                              onPressed: () {},
+                                  onPressed: () {},
+                                ),
+                              ],
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
-                    ],
+                    ),
                   ),
                 ),
-                Container(
-                  width: size.width / 2,
-                  alignment: Alignment.topCenter,
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 16.0),
-                    child: ImageMultipleSource(
-                        imageUrl: widget.data?.overview?.imageUrl ?? ""),
+                Expanded(
+                  child: Container(
+                    alignment: Alignment.center,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 32),
+                      child: ImageMultipleSource(
+                          imageUrl: widget.data?.overview?.imageUrl ?? ""),
+                    ),
                   ),
                 ),
               ],

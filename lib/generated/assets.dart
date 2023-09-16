@@ -4,14 +4,11 @@ class Assets {
 
   static const String assetsLandingPage = 'assets/landing_page.json';
   static const String foodLandingpageImagesSol4 = 'images/sol4.webp';
-  static const String imagesPic2 = 'images/pic2.jfif';
-  static const String imagesPic3 = 'images/pic3.jfif';
-  static const String imagesPic4 = 'images/pic4.jfif';
-  static const String imagesPic5 = 'images/pic5.jfif';
-  static const String imagesPic6 = 'images/pic6.jfif';
-  static const String imagesPic7 = 'images/pic7.jfif';
-  static const String imagesPic8 = 'images/pic8.jfif';
-  static const String imagesPic9 = 'images/pic9.jfif';
+  static const String imagesFamily = 'images/family.jpeg';
+  static const String imagesFoodFresh = 'images/food_fresh.jpeg';
+  static const String imagesIcfb1 = 'images/icfb1.png';
+  static const String imagesLacuisineResto = 'images/Lacuisine_resto.jpg';
+  static const String imagesPlaceholder = 'images/placeholder.jpeg';
   static const String imagesSol1 = 'images/sol1.jpeg';
   static const String imagesSol2 = 'images/sol2.png';
   static const String imagesSol3 = 'images/sol3.png';

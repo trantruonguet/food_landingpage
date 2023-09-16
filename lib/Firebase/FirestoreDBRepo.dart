@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:restaurentlanding/Asset/assets.dart';
+import '../generated/assets.dart';
 import 'FirestoreData.dart';
 import 'dart:convert';
 
