@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:solmusic/Style/Style.dart';
+import 'package:restaurentlanding/Style/Style.dart';
 
 // ignore: must_be_immutable
 class NavigationBarItem extends StatefulWidget {

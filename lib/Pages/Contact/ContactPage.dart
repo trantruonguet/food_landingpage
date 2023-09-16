@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
-import 'package:solmusic/Firebase/FirestoreData.dart';
-import 'package:solmusic/Pages/Contact/ContactDesktopPage.dart';
-import 'package:solmusic/Pages/Contact/ContactMobilePage.dart';
+import 'package:restaurentlanding/Firebase/FirestoreData.dart';
+import 'package:restaurentlanding/Pages/Contact/ContactDesktopPage.dart';
+import 'package:restaurentlanding/Pages/Contact/ContactMobilePage.dart';
 
 class ContactPage extends StatelessWidget {
   final FirestoreData? data;

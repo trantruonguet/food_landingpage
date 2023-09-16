@@ -1,6 +1,6 @@
-# SolMusic Landing Page
+# restaurentlanding Landing Page
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/53f93837-1123-41ab-bb67-b3cf9ec561f4/deploy-status)](https://app.netlify.com/sites/solmusicdemo/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/53f93837-1123-41ab-bb67-b3cf9ec561f4/deploy-status)](https://app.netlify.com/sites/restaurentlandingdemo/deploys)
 
 
 ####    Made Using Flutter Web
@@ -10,7 +10,7 @@
 ![](Videos1.gif)
 
 
-### See demo online [solMusic](https://solmusicdemo.netlify.app/#/)
+### See demo online [restaurentlanding](https://restaurentlandingdemo.netlify.app/#/)
 
 ## ⚙️ Requirements
 

@@ -70,7 +70,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '428858923828',
     projectId: 'food-order-56bc3',
     storageBucket: 'food-order-56bc3.appspot.com',
-    iosClientId: '428858923828-m04no51gn2vqg8rf4vb5273hqlr2nb76.apps.googleusercontent.com',
-    iosBundleId: 'com.example.solmusic',
+    iosClientId:
+        '428858923828-m04no51gn2vqg8rf4vb5273hqlr2nb76.apps.googleusercontent.com',
+    iosBundleId: 'com.example.restaurentlanding',
   );
 }

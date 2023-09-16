@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:solmusic/Firebase/FirestoreData.dart';
-import 'package:solmusic/Style/Style.dart';
-import 'package:solmusic/Pages/Views/FooterView.dart';
+import 'package:restaurentlanding/Firebase/FirestoreData.dart';
+import 'package:restaurentlanding/Style/Style.dart';
+import 'package:restaurentlanding/Pages/Views/FooterView.dart';
 
 // ignore: must_be_immutable
 class ContactDesktopPage extends StatelessWidget {

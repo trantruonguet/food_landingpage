@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:solmusic/Pages/Views/DateDropdownButton.dart';
-import 'package:solmusic/Pages/Views/TimeDropdownButton.dart';
-import 'package:solmusic/Style/Style.dart';
+import 'package:restaurentlanding/Pages/Views/DateDropdownButton.dart';
+import 'package:restaurentlanding/Pages/Views/TimeDropdownButton.dart';
+import 'package:restaurentlanding/Style/Style.dart';
 
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/foundation.dart';

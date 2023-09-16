@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:solmusic/Firebase/MenuItem.dart';
-import 'package:solmusic/Firebase/SectionData.dart';
-import 'package:solmusic/Pages/Views/ImageMultipleSource.dart';
-import 'package:solmusic/Style/Style.dart';
+import 'package:restaurentlanding/Firebase/MenuItem.dart';
+import 'package:restaurentlanding/Firebase/SectionData.dart';
+import 'package:restaurentlanding/Pages/Views/ImageMultipleSource.dart';
+import 'package:restaurentlanding/Style/Style.dart';
 
 class MenuDesktopPage extends StatelessWidget {
   const MenuDesktopPage({

@@ -1,13 +1,13 @@
 // ignore: avoid_web_libraries_in_flutter
 import 'dart:html';
 import 'package:flutter/material.dart';
-import 'package:solmusic/Firebase/FirestoreData.dart';
-import 'package:solmusic/Pages/Views/FooterView.dart';
-import 'package:solmusic/Pages/Views/ImageMultipleSource.dart';
-import 'package:solmusic/Style/Style.dart';
+import 'package:restaurentlanding/Firebase/FirestoreData.dart';
+import 'package:restaurentlanding/Pages/Views/FooterView.dart';
+import 'package:restaurentlanding/Pages/Views/ImageMultipleSource.dart';
+import 'package:restaurentlanding/Style/Style.dart';
 import 'dart:ui' as ui;
 import 'package:google_maps/google_maps.dart' as mapGG;
-import 'package:solmusic/Widget/RoundedButton.dart';
+import 'package:restaurentlanding/Widget/RoundedButton.dart';
 
 class LandingMobileView extends StatefulWidget {
   final FirestoreData? data;

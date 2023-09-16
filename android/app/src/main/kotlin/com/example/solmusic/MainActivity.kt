@@ -1,4 +1,4 @@
-package com.example.solmusic
+package com.example.restaurentlanding
 
 import io.flutter.embedding.android.FlutterActivity
 

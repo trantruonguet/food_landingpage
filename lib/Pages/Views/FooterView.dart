@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:solmusic/Firebase/FirestoreData.dart';
+import 'package:restaurentlanding/Firebase/FirestoreData.dart';
 
 import '../../Style/Style.dart';
 
@@ -64,7 +64,7 @@ class FooterView extends StatelessWidget {
                     footerText("Contact Us"),
                     footerText("Email"),
                     footerText("Terms of Use"),
-                    // footerText("SolMusic Originals"),
+                    // footerText("restaurentlanding Originals"),
                   ],
                 ),
                 Column(
@@ -190,7 +190,7 @@ class FooterMobileView extends StatelessWidget {
                         footerText("Privacy\n"),
                       ],
                     ),
-                    // footerText("SolMusic Originals"),
+                    // footerText("restaurentlanding Originals"),
                   ],
                 ),
                 // Column(

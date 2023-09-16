@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:solmusic/Firebase/FirestoreDBRepo.dart';
-import 'package:solmusic/Pages/HomePage.dart';
+import 'package:restaurentlanding/Firebase/FirestoreDBRepo.dart';
+import 'package:restaurentlanding/Pages/HomePage.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 

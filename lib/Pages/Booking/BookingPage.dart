@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:solmusic/Pages/Booking/BookingDesktopPage.dart';
-import 'package:solmusic/Pages/Booking/BookingMobilePage.dart';
+import 'package:restaurentlanding/Pages/Booking/BookingDesktopPage.dart';
+import 'package:restaurentlanding/Pages/Booking/BookingMobilePage.dart';
 
 class BookingPage extends StatefulWidget {
   @override

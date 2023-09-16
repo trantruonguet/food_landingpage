@@ -1,6 +1,6 @@
 {
-    "name": "solmusic",
-    "short_name": "solmusic",
+    "name": "restaurentlanding",
+    "short_name": "restaurentlanding",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:solmusic/Firebase/FirestoreDBRepo.dart';
-import 'package:solmusic/Firebase/FirestoreData.dart';
-import 'package:solmusic/NavigationBar/NavigationBar.dart';
-import 'package:solmusic/Pages/Booking/BookingPage.dart';
-import 'package:solmusic/Pages/Contact/ContactPage.dart';
-import 'package:solmusic/Pages/Landing/LandingPage.dart';
-import 'package:solmusic/Pages/Menu/MenuPage.dart';
+import 'package:restaurentlanding/Firebase/FirestoreDBRepo.dart';
+import 'package:restaurentlanding/Firebase/FirestoreData.dart';
+import 'package:restaurentlanding/NavigationBar/NavigationBar.dart';
+import 'package:restaurentlanding/Pages/Booking/BookingPage.dart';
+import 'package:restaurentlanding/Pages/Contact/ContactPage.dart';
+import 'package:restaurentlanding/Pages/Landing/LandingPage.dart';
+import 'package:restaurentlanding/Pages/Menu/MenuPage.dart';
 
 class HomePage extends StatefulWidget {
   @override

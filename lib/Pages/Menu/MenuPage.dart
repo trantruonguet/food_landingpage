@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:solmusic/Firebase/FirestoreData.dart';
-import 'package:solmusic/Firebase/SectionData.dart';
-import 'package:solmusic/Pages/Menu/MenuDesktoPage.dart';
-import 'package:solmusic/Pages/Menu/MenuMobilePage.dart';
-import 'package:solmusic/Firebase/MenuItem.dart';
+import 'package:restaurentlanding/Firebase/FirestoreData.dart';
+import 'package:restaurentlanding/Firebase/SectionData.dart';
+import 'package:restaurentlanding/Pages/Menu/MenuDesktoPage.dart';
+import 'package:restaurentlanding/Pages/Menu/MenuMobilePage.dart';
+import 'package:restaurentlanding/Firebase/MenuItem.dart';
 
 class MenuPage extends StatelessWidget {
   final FirestoreData? data;
