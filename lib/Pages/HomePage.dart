@@ -7,6 +7,8 @@ import 'package:restaurentlanding/Pages/Contact/ContactPage.dart';
 import 'package:restaurentlanding/Pages/Landing/LandingPage.dart';
 import 'package:restaurentlanding/Pages/Menu/MenuPage.dart';
 
+import 'Menu/MenuPageTemp.dart';
+
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
@@ -71,9 +73,11 @@ class _HomePageState extends State<HomePage> {
               ),
               if (type == HomeItem.LandingOage) LandingPage(data: data),
               if (type == HomeItem.Menupage)
-                MenuPage(
-                  data: data,
-                ),
+                MenuPageTemp(),
+
+              // MenuPage(
+                //   data: data,
+                // ),
               if (type == HomeItem.BookPage) BookingPage(),
               if (type == HomeItem.ContactPage)
                 ContactPage(
