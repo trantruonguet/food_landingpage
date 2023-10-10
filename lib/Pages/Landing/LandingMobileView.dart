@@ -8,6 +8,7 @@ import 'package:restaurentlanding/Style/Style.dart';
 import 'dart:ui' as ui;
 import 'package:google_maps/google_maps.dart' as mapGG;
 import 'package:restaurentlanding/Widget/RoundedButton.dart';
+import 'package:webview_flutter_platform_interface/webview_flutter_platform_interface.dart';
 
 class LandingMobileView extends StatefulWidget {
   final FirestoreData? data;
@@ -20,6 +21,15 @@ class LandingMobileView extends StatefulWidget {
 
 class _LandingMobileViewState extends State<LandingMobileView> {
   _LandingMobileViewState();
+
+  final PlatformWebViewController _controller = PlatformWebViewController(
+    const PlatformWebViewControllerCreationParams(),
+  )..loadRequest(LoadRequestParams(
+      uri: Uri.parse(
+        // "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3333.967410377096!2d-111.89998968453055!3d33.31966746342457!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzPCsDE5JzEwLjgiTiAxMTHCsDUzJzUyLjEiVw!5e0!3m2!1sen!2sus!4v1516690469899",
+        "https://maps-api-ssl.google.com/maps?hl=vi&ll=47.884867,11.915334&output=embed&q=Kirchdorfer+Str.+14b,+83052+Bruckm%C3%BChl,+Deutschland+(King+Keng+-+Vietnamesisches+Spezialit%C3%A4ten+Restaurant)&z=16",
+      ),
+    ));
 
   @override
   void initState() {
@@ -394,10 +404,17 @@ class _LandingMobileViewState extends State<LandingMobileView> {
               ),
             ),
           ),
-          SizedBox(
-            height: 350,
+          // SizedBox(
+          //   height: 350,
+          //   width: size.width,
+          //   child: HtmlElementView(viewType: htmlId),
+          // ),
+          Container(
+            height: 550,
             width: size.width,
-            child: HtmlElementView(viewType: htmlId),
+            child: PlatformWebViewWidget(
+              PlatformWebViewWidgetCreationParams(controller: _controller),
+            ).build(context),
           ),
           //Footer
           FooterMobileView(size: size, data: widget.data)

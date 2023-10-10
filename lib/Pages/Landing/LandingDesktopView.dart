@@ -8,6 +8,7 @@ import 'package:restaurentlanding/Style/Style.dart';
 import 'dart:ui' as ui;
 import 'package:google_maps/google_maps.dart' as mapGG;
 import 'package:restaurentlanding/Widget/RoundedButton.dart';
+import 'package:webview_flutter_platform_interface/webview_flutter_platform_interface.dart';
 
 class LandingDesktopView extends StatefulWidget {
   final FirestoreData? data;
@@ -184,18 +185,87 @@ class _LandingDesktopViewState extends State<LandingDesktopView> {
     );
   }
 
+  final PlatformWebViewController _controller = PlatformWebViewController(
+    const PlatformWebViewControllerCreationParams(),
+  )..loadRequest(LoadRequestParams(
+      uri: Uri.parse(
+        // "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3333.967410377096!2d-111.89998968453055!3d33.31966746342457!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzPCsDE5JzEwLjgiTiAxMTHCsDUzJzUyLjEiVw!5e0!3m2!1sen!2sus!4v1516690469899",
+        "https://maps-api-ssl.google.com/maps?hl=vi&ll=47.884867,11.915334&output=embed&q=Kirchdorfer+Str.+14b,+83052+Bruckm%C3%BChl,+Deutschland+(King+Keng+-+Vietnamesisches+Spezialit%C3%A4ten+Restaurant)&z=16",
+      ),
+    ));
+
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     final String htmlId = "map";
+    final String previewMapId = "preview_map";
+
+    mapGG.MapTypeControlOptions mapTypeControlOptions =
+        mapGG.MapTypeControlOptions();
+    mapTypeControlOptions.style = mapGG.MapTypeControlStyle.DROPDOWN_MENU;
 
     // ignore: undefined_prefixed_name
     ui.platformViewRegistry.registerViewFactory(htmlId, (int viewId) {
+      final panControl = mapGG.PanControlOptions()
+        ..position = mapGG.ControlPosition.BOTTOM_CENTER;
       final mapOptions = mapGG.MapOptions()
         ..zoom = 15.0
-        ..center = mapGG.LatLng(double.parse(widget.data?.latitude ?? "0"), double.parse(widget.data?.longitude ?? "0"));
-        // ..center = mapGG.LatLng(double.parse( "15.5"), double.parse("15.5"));
+        ..center = mapGG.LatLng(47.884841, 11.915343)
+        ..keyboardShortcuts = true
+        ..gestureHandling = 'cooperative'
+        ..panControl = true
+        ..panControlOptions = panControl
+        ..disableDefaultUI = true
+        ..disableDoubleClickZoom = true
+        // ..panControl = true
+        // ..mapTypeControl = true
+        // ..mapTypeControlOptions = mapTypeControlOptions
+        ..zoomControl = true;
+      // ..isFractionalZoomEnabled = true;
+
+      // mapOptions.disableDoubleClickZoom = false;
+
       final elem = DivElement()..id = htmlId;
+      // elem.addEventListener('wheel', (event) {
+      //   // ignore: unrelated_type_equality_checks
+      //   if (event is WheelEvent && event.getModifierState('Control') != 0) {
+      //     event.preventDefault();
+      //   }
+      // });
+      final map = mapGG.GMap(elem, mapOptions);
+
+      map.onCenterChanged.listen((event) {});
+      map.onDragstart.listen((event) {});
+      map.onDragend.listen((event) {});
+
+      mapGG.Marker(mapGG.MarkerOptions()
+        ..position = map.center
+        ..map = map
+        ..title = widget.data?.restaurantName);
+
+      return elem;
+    });
+
+    // ignore: undefined_prefixed_name
+    ui.platformViewRegistry.registerViewFactory(previewMapId, (int viewId) {
+      final panControl = mapGG.PanControlOptions()
+        ..position = mapGG.ControlPosition.BOTTOM_CENTER;
+      final mapOptions = mapGG.MapOptions()
+        ..zoom = 15.0
+        ..center = mapGG.LatLng(47.884841, 11.915343)
+        ..keyboardShortcuts = true
+        ..gestureHandling = 'cooperative'
+        ..panControl = true
+        ..panControlOptions = panControl
+        ..disableDefaultUI = true;
+
+      final elem = DivElement()..id = htmlId;
+      // elem.addEventListener('wheel', (event) {
+      //   // ignore: unrelated_type_equality_checks
+      //   if (event is WheelEvent && event.getModifierState('Control') != 0) {
+      //     event.preventDefault();
+      //   }
+      // });
       final map = mapGG.GMap(elem, mapOptions);
 
       map.onCenterChanged.listen((event) {});
@@ -215,91 +285,88 @@ class _LandingDesktopViewState extends State<LandingDesktopView> {
         children: [
           //Home Music for everyone
           Container(
-            // height: size.height,
+            height: size.height,
             width: size.width,
             color: Color(0xff0A183D),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 32),
-                    child: Container(
-                      alignment: Alignment.topCenter,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Container(
-                            width: size.width * 0.40,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  widget.data?.overview?.title ?? "",
-                                  style: ThemText.homewhiteTitle,
-                                ),
-                              ],
+                Container(
+                  alignment: Alignment.topCenter,
+                  width: size.width / 2,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        width: size.width * 0.40,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              widget.data?.overview?.title ?? "",
+                              style: ThemText.homewhiteTitle,
                             ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Container(
-                                    width: size.width * 0.40,
-                                    alignment: Alignment.centerLeft,
-                                    child: Wrap(
-                                      children: [
-                                        Text(
-                                          widget.data?.overview?.content ?? "",
-                                          style: ThemText.homeDescTitle,
-                                        ),
-                                      ],
-                                    )),
-                                Container(
-                                    width: size.width * 0.40,
-                                    alignment: Alignment.centerLeft,
-                                    child: Wrap(
-                                      children: [
-                                        Text(
-                                          widget.data?.overview?.subContent ?? "",
-                                          style: ThemText.homeDescTitle,
-                                        ),
-                                      ],
-                                    )),
-                              ],
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 48.0,
-                              vertical: 24.0,
-                            ),
-                            child: Row(
-                              children: [
-                                RoundedButton(
-                                  color: Color(0xffFC0254),
-                                  textTitle:
-                                  widget.data?.overview?.buttonTitle ?? "",
-                                  onPressed: () {},
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
-                    ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                                width: size.width * 0.40,
+                                alignment: Alignment.centerLeft,
+                                child: Wrap(
+                                  children: [
+                                    Text(
+                                      widget.data?.overview?.content ?? "",
+                                      style: ThemText.homeDescTitle,
+                                    ),
+                                  ],
+                                )),
+                            Container(
+                                width: size.width * 0.40,
+                                alignment: Alignment.centerLeft,
+                                child: Wrap(
+                                  children: [
+                                    Text(
+                                      widget.data?.overview?.subContent ?? "",
+                                      style: ThemText.homeDescTitle,
+                                    ),
+                                  ],
+                                )),
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 48.0,
+                          vertical: 24.0,
+                        ),
+                        child: Container(
+                          width: size.width * 0.40,
+                          child: Row(
+                            children: [
+                              RoundedButton(
+                                color: Color(0xffFC0254),
+                                textTitle:
+                                    widget.data?.overview?.buttonTitle ?? "",
+                                onPressed: () {},
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-                Expanded(
-                  child: Container(
-                    alignment: Alignment.center,
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 32),
-                      child: ImageMultipleSource(
-                          imageUrl: widget.data?.overview?.imageUrl ?? ""),
-                    ),
+                Container(
+                  width: size.width / 2,
+                  alignment: Alignment.topCenter,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 16.0),
+                    child: ImageMultipleSource(
+                        imageUrl: widget.data?.overview?.imageUrl ?? ""),
                   ),
                 ),
               ],
@@ -398,11 +465,38 @@ class _LandingDesktopViewState extends State<LandingDesktopView> {
               ),
             ),
           ),
-          SizedBox(
-            height: 350,
+          // SizedBox(
+          //   height: 350,
+          //   width: size.width,
+          //   child: Stack(
+          //     children: [
+          //       HtmlElementView(viewType: htmlId),
+          //       Positioned(
+          //         bottom: 20,
+          //         left: 20,
+          //         child: SizedBox(
+          //           height: 50,
+          //           width: 50,
+          //           child: HtmlElementView(viewType: previewMapId),
+          //         ),
+          //       ),
+          //       Positioned(
+          //         top: 20,
+          //         left: 20,
+          //         child: Container(),
+          //       )
+          //     ],
+          //   ),
+          // ),
+
+          Container(
+            height: 550,
             width: size.width,
-            child: HtmlElementView(viewType: htmlId),
+            child: PlatformWebViewWidget(
+              PlatformWebViewWidgetCreationParams(controller: _controller),
+            ).build(context),
           ),
+
           //Footer
           FooterView(size: size, data: widget.data)
         ],
