@@ -42,7 +42,7 @@ class _LandingDesktopViewState extends State<LandingDesktopView> {
                   flex: 1,
                   child: ImageMultipleSource(
                     imageUrl: image,
-                    size: Size(size.width * 0.3, size.width * 0.3),
+                    size: Size(size.width * 0.45, size.width * 0.3),
                   ),
                 ),
               if (imageLeft)
@@ -85,7 +85,7 @@ class _LandingDesktopViewState extends State<LandingDesktopView> {
                   flex: 1,
                   child: ImageMultipleSource(
                     imageUrl: image,
-                    size: Size(size.width * 0.3, size.width * 0.3),
+                    size: Size(size.width * 0.45, size.width * 0.3),
                   ),
                 ),
             ],
@@ -196,6 +196,8 @@ class _LandingDesktopViewState extends State<LandingDesktopView> {
 
   @override
   Widget build(BuildContext context) {
+    final overviewImage = widget.data?.overview?.imageUrl ?? "";
+    print("build overview imageUrl = $overviewImage");
     var size = MediaQuery.of(context).size;
     final String htmlId = "map";
     final String previewMapId = "preview_map";
@@ -365,9 +367,9 @@ class _LandingDesktopViewState extends State<LandingDesktopView> {
                   alignment: Alignment.topCenter,
                   child: Padding(
                     padding: const EdgeInsets.symmetric(vertical: 16.0),
-                    child: ImageMultipleSource(
-                        imageUrl: widget.data?.overview?.imageUrl ?? ""),
-                  ),
+                    child: Image.asset(
+                      "images/landing1.jpeg"),
+                    ),
                 ),
               ],
             ),

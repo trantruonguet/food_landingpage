@@ -24,8 +24,7 @@ class _ImageMultipleSourceState extends State<ImageMultipleSource> {
       await rootBundle.load(widget.imageUrl);
       hasLocalAsset = true;
     } catch (e) {
-      print(
-          "checkResource = $e"); // Catches all types of `Exception` and `Error`.
+      print("checkResource = $e"); // Catches all types of `Exception` and `Error`.
       hasLocalAsset = false;
     }
 
@@ -36,6 +35,8 @@ class _ImageMultipleSourceState extends State<ImageMultipleSource> {
 
   @override
   Widget build(BuildContext context) {
+    print("ImageMultipleSource ${widget.imageUrl}");
+
     if (widget.imageUrl.contains("http")) {
       if (widget.size != null) {
         return Image.network(

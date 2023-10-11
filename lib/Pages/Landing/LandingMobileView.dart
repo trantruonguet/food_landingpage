@@ -256,9 +256,8 @@ class _LandingMobileViewState extends State<LandingMobileView> {
                           ),
                           Container(
                             width: size.width / 2,
-                            child: ImageMultipleSource(
-                                imageUrl:
-                                    widget.data?.overview?.imageUrl ?? ""),
+                            child: Image.asset(
+                                "images/landing1.jpeg"),
                           ),
                         ],
                       ),
