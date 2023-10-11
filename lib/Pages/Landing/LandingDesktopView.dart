@@ -364,7 +364,7 @@ class _LandingDesktopViewState extends State<LandingDesktopView> {
                 ),
                 Container(
                   width: size.width / 2,
-                  alignment: Alignment.topCenter,
+                  alignment: Alignment.center,
                   child: Padding(
                     padding: const EdgeInsets.symmetric(vertical: 16.0),
                     child: Image.asset(
