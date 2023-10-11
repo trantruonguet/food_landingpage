@@ -70,6 +70,7 @@ class _HomePageState extends State<HomePage> {
                     }
                   });
                 },
+                restaurantName: data?.restaurantName ?? "",
               ),
               if (type == HomeItem.LandingOage) LandingPage(data: data),
               if (type == HomeItem.Menupage)

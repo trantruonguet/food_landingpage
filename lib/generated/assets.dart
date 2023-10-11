@@ -22,7 +22,7 @@ class Assets {
   static const String imagesLacuisineResto = 'images/Lacuisine_resto.jpg';
   static const String imagesPlaceholder = 'images/placeholder.jpeg';
   static const String imagesSol1 = 'images/sol1.jpeg';
-  static const String imagesSol2 = 'images/sol2.png';
+  static const String imagesSol2 = 'images/sol2.jpeg';
   static const String imagesSol3 = 'images/sol3.png';
   static const String imagesSol4 = 'images/sol4.png';
 

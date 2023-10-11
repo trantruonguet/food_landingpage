@@ -252,7 +252,7 @@ class _LandingDesktopViewState extends State<LandingDesktopView> {
         ..position = mapGG.ControlPosition.BOTTOM_CENTER;
       final mapOptions = mapGG.MapOptions()
         ..zoom = 15.0
-        ..center = mapGG.LatLng(47.884841, 11.915343)
+        ..center = mapGG.LatLng(double.parse(widget.data?.latitude ?? "0"), double.parse(widget.data?.longitude ?? "0"))
         ..keyboardShortcuts = true
         ..gestureHandling = 'cooperative'
         ..panControl = true

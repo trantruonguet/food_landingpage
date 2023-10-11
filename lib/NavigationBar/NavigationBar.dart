@@ -8,12 +8,14 @@ class NavigationBarItem extends StatefulWidget {
     required this.onMenuPagePress,
     required this.onBookPagePress,
     required this.onContactPagePress,
+    required this.restaurantName
   });
 
   Function onLandingPagePress;
   Function onMenuPagePress;
   Function onBookPagePress;
   Function onContactPagePress;
+  String restaurantName;
 
   @override
   _NavigationBarItemState createState() => _NavigationBarItemState();
@@ -30,6 +32,8 @@ class _NavigationBarItemState extends State<NavigationBarItem> {
             onMenuPagePress: widget.onMenuPagePress,
             onBookPagePress: widget.onBookPagePress,
             onContactPagePress: widget.onContactPagePress,
+            restaurantName: widget.restaurantName,
+
           );
         } else if (constraints.maxWidth >= 600 &&
             constraints.maxWidth <= 1200) {
@@ -38,6 +42,7 @@ class _NavigationBarItemState extends State<NavigationBarItem> {
             onMenuPagePress: widget.onMenuPagePress,
             onBookPagePress: widget.onBookPagePress,
             onContactPagePress: widget.onContactPagePress,
+            restaurantName: widget.restaurantName,
           );
         } else {
           return MobileNavBar(
@@ -45,6 +50,7 @@ class _NavigationBarItemState extends State<NavigationBarItem> {
             onMenuPagePress: widget.onMenuPagePress,
             onBookPagePress: widget.onBookPagePress,
             onContactPagePress: widget.onContactPagePress,
+            restaurantName: widget.restaurantName,
           );
         }
       },
@@ -59,13 +65,14 @@ class DesktopNavBar extends StatefulWidget {
     required this.onMenuPagePress,
     required this.onBookPagePress,
     required this.onContactPagePress,
+    required this.restaurantName
   });
 
   Function onLandingPagePress;
   Function onMenuPagePress;
   Function onBookPagePress;
   Function onContactPagePress;
-
+  String restaurantName;
   @override
   _DesktopNavBarState createState() => _DesktopNavBarState();
 }
@@ -89,11 +96,11 @@ class _DesktopNavBarState extends State<DesktopNavBar> {
                   Wrap(
                     alignment: WrapAlignment.center,
                     children: [
-                      Text(
-                        "Sol".toUpperCase(),
-                        style: ThemText.titlePinkText,
-                      ),
-                      Text("Restaurent".toUpperCase(),
+                      // Text(
+                      //   "Sol".toUpperCase(),
+                      //   style: ThemText.titlePinkText,
+                      // ),
+                      Text(widget.restaurantName.toUpperCase(),
                           style: ThemText.titleWhiteText)
                     ],
                   ),
@@ -165,12 +172,15 @@ class MobileNavBar extends StatefulWidget {
     required this.onMenuPagePress,
     required this.onBookPagePress,
     required this.onContactPagePress,
+    required this.restaurantName,
+
   });
 
   Function onLandingPagePress;
   Function onMenuPagePress;
   Function onBookPagePress;
   Function onContactPagePress;
+  String restaurantName;
   @override
   _MobileNavBarState createState() => _MobileNavBarState();
 }

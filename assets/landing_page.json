@@ -1,8 +1,8 @@
 {
-  "restaurantName": "My restaurant",
+  "restaurantName": "KINGKENG ASIA RESTAURANT",
   "overview": {
-    "title": "Welcome to my restaurant",
-    "content": "With us you will experience our philosophy and enjoy the unique quality of our original Japanese sushi. \\nWe serve a large selection of first-class sushi and Vietnamese dishes in a cozy East Asian ambience. \\nYou can also rely on us when it comes to choosing drinks. Whether you want a homemade iced tea, a fresh mint tea with ginger or an Asian beer - our drinks menu offers numerous specialties as well as well-known alcoholic and soft drinks.",
+    "title": "Welcome to KINGKENG ASIA RESTAURANT",
+    "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat",
     "subContent": "",
     "buttonTitle": "Booking now",
     "imageUrl": "images/sol1.jpeg",
@@ -11,78 +11,78 @@
   "menus": [
     {
       "id": "Menu1",
-      "title": "Sushi bar",
-      "content": "Asian cuisine",
-      "subContent": "Our chefs put a lot of passion into conjuring up fresh delicacies on your plate every day. Whether it's a business lunch, a romantic dinner or a family celebration, with us you can escape from everyday life and embark on a wonderful culinary journey.",
+      "title": "Mittagskarte",
+      "content": "Lorem ipsum dolor sit amet.",
+      "subContent": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat",
       "buttonTitle": "Booking now",
-      "imageUrl": "images/sol2.png",
+      "imageUrl": "images/sol2.jpeg",
       "iconUrl": "",
       "order": 1
     },
     {
-      "id": "Menu2",
-      "title": "Noodle",
+      "id": "Speisekarte",
+      "title": "Lorem ipsum",
       "content": "Lorem ipsum dolor sit amet.",
       "subContent": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat",
       "buttonTitle": "Booking now",
-      "imageUrl": "images/sol3.png",
+      "imageUrl": "images/sol2.jpeg",
       "iconUrl": "",
       "order": 2
     },
     {
       "id": "Menu3",
-      "title": "Drinking",
-      "content": "Hot and cool",
+      "title": "Sushi",
+      "content":  "Lorem ipsum dolor sit amet.",
       "subContent": "Lorem ipsum dolor sit amet, consectetur adipi-scing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum sus-pendisse ultrices gravida.",
       "buttonTitle": "Booking now",
-      "imageUrl": "images/sol4.webp",
+      "imageUrl": "images/sol2.jpeg",
       "iconUrl": "",
       "order": 3
     }
   ],
   "horizontalSlogans": [
     {
-      "title": "THE BEST RESTAURANT",
-      "content": "With us you not only enjoy delicious food, but also a diverse Asian cuisine. \\nFor all food bloggers: Take a photo and share it immediately on Instagram - no problem, we have free WiFi",
-      "subContent": "",
+      "title": "Lorem ipsum",
+      "content": "Lorem ipsum dolor sit amet.",
+      "subContent" :"Lorem ipsum dolor sit amet, consectetur adipi-scing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum sus-pendisse ultrices gravida.",
       "buttonTitle": "",
-      "imageUrl": "images/Lacuisine_resto.jpg",
+      "imageUrl": "images/sol2.jpeg",
       "iconUrl": ""
     },
     {
-      "title": "PERFECT FOR FAMILY",
-      "content": "Our air is filled with aroma. \\nIf you are looking for a spacious, comfortable, luxurious and cozy place to meet up with friends and family, VietStreet Restaurant is the best choice",
-      "subContent": "",
+      "title": "Lorem ipsum",
+      "content": "Lorem ipsum dolor sit amet.",
+      "subContent" :"Lorem ipsum dolor sit amet, consectetur adipi-scing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum sus-pendisse ultrices gravida.",
       "buttonTitle": "",
-      "imageUrl": "images/family.jpeg",
+      "imageUrl": "images/sol2.jpeg",
       "iconUrl": ""
     },
     {
-      "title": "FRESH EVERY DAY",
-      "content": "Our dishes are prepared exclusively with fresh and high-quality ingredients. \\nYour health and satisfaction is always our top priority",
-      "subContent": "",
+      "title": "Lorem ipsum",
+      "content": "Lorem ipsum dolor sit amet.",
+      "subContent" :"Lorem ipsum dolor sit amet, consectetur adipi-scing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum sus-pendisse ultrices gravida.",
       "buttonTitle": "",
-      "imageUrl": "images/food_fresh.jpeg",
+      "imageUrl": "images/sol2.jpeg",
       "iconUrl": ""
     }
   ],
-  "latitude": "",
-  "longitude": "",
+  "latitude": "47.884841",
+  "longitude": "11.915343",
   "openHours": [
-    "8:00-21h",
-    "8:00-21h",
-    "8:00-21h",
-    "8:00-21h",
-    "8:00-21h",
-    "8:00-21h",
+    "11:00 - 14:30, 17:00 - 21:30",
+    "11:00 - 14:30, 17:00 - 21:30",
+    "11:00 - 14:30, 17:00 - 21:30",
+    "11:00 - 14:30, 17:00 - 21:30",
+    "11:00 - 14:30, 17:00 - 21:30",
+    "11:00 - 14:30, 17:00 - 21:30",
     "Closed"
   ],
   "phoneNumber": "",
   "facebookLink": "",
   "instagramLink": "",
   "youtubeLink": "",
-  "address": "14 Floor, Berlin Centre, Berlin, Germany",
-  "email": "sol_restaurant@gmail.com",
+  "address": "Kirchdorfer Str. 14b, 83052 Bruckmühl, Germany",
+  "email": "the_restaurant@gmail.com",
   "menuItems": [
     {
       "name": "Lorem ipsum dolor sit amet",
@@ -135,8 +135,8 @@
   ],
   "aboutUs": [
     {
-      "title": "My restaurant",
-      "content": "Our dishes are prepared exclusively with fresh and high-quality ingredients. \\nYour health and satisfaction is always our top priority",
+      "title": "KINGKENG ASIA RESTAURANT",
+      "content": "Lorem ipsum dolor sit amet, consectetur adipi-scing elit, sed do eiusmod tempor",
       "subContent": "",
       "buttonTitle": "",
       "imageUrl": "",

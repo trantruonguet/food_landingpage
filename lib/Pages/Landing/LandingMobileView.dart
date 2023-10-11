@@ -206,7 +206,7 @@ class _LandingMobileViewState extends State<LandingMobileView> {
     ui.platformViewRegistry.registerViewFactory(htmlId, (int viewId) {
       final mapOptions = mapGG.MapOptions()
         ..zoom = 15.0
-        ..center = mapGG.LatLng(35.7560423, 139.7803552);
+        ..center = mapGG.LatLng(double.parse(widget.data?.latitude ?? "0"), double.parse(widget.data?.longitude ?? "0"));
 
       final elem = DivElement()..id = htmlId;
       final map = mapGG.GMap(elem, mapOptions);
