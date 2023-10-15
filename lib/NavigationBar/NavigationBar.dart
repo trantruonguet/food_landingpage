@@ -101,7 +101,7 @@ class _DesktopNavBarState extends State<DesktopNavBar> {
                       //   style: ThemText.titlePinkText,
                       // ),
                       Text(widget.restaurantName.toUpperCase(),
-                          style: ThemText.titleWhiteText)
+                          style: ThemText.titlePinkText)
                     ],
                   ),
                   SizedBox(
@@ -209,12 +209,8 @@ class _MobileNavBarState extends State<MobileNavBar> {
                       Wrap(
                         alignment: WrapAlignment.center,
                         children: [
-                          Text(
-                            "Sol".toUpperCase(),
-                            style: ThemText.titlePinkText,
-                          ),
-                          Text("Restaurent".toUpperCase(),
-                              style: ThemText.titleWhiteText)
+                          Text(widget.restaurantName.toUpperCase(),
+                              style: ThemText.titlePinkText)
                         ],
                       ),
                     ],
