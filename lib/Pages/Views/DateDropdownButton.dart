@@ -21,6 +21,8 @@ class _DateDropdownButtonState extends State<DateDropdownButton> {
     final formatDateResult = DateFormat('yyyy/MM/dd');
     if (formatDate.format(today) != 'Sunday') {
       list.add("Today");
+    } else {
+      dropdownValue = "Tomorrow";
     }
     DateTime tomorrow = DateTime(now.year, now.month, now.day + 1);
     if (formatDate.format(tomorrow) != 'Sunday') {
@@ -48,6 +50,7 @@ class _DateDropdownButtonState extends State<DateDropdownButton> {
     }
     setState(() {
       list = list;
+      dropdownValue = dropdownValue;
     });
   }
 
