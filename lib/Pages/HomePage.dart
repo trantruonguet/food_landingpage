@@ -1,3 +1,4 @@
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:restaurentlanding/Firebase/FirestoreDBRepo.dart';
 import 'package:restaurentlanding/Firebase/FirestoreData.dart';
@@ -18,13 +19,13 @@ class _HomePageState extends State<HomePage> {
   HomeItem type = HomeItem.LandingOage;
   FirestoreDBRepo dbRepo = FirestoreDBRepo();
   FirestoreData? data;
-
   bool cookiesAccepted = false;
 
   @override
   void initState() {
     super.initState();
     getData();
+    // FirebaseAnalytics.instance.logEvent(name: "enter_app");
   }
 
   void getData() async {
@@ -46,6 +47,7 @@ class _HomePageState extends State<HomePage> {
                   setState(() {
                     if (type != HomeItem.LandingOage) {
                       type = HomeItem.LandingOage;
+                      FirebaseAnalytics.instance.logEvent(name: "select_landing");
                     }
                   });
                 },
@@ -53,6 +55,7 @@ class _HomePageState extends State<HomePage> {
                   setState(() {
                     if (type != HomeItem.Menupage) {
                       type = HomeItem.Menupage;
+                      FirebaseAnalytics.instance.logEvent(name: "select_menu");
                     }
                   });
                 },
@@ -60,6 +63,7 @@ class _HomePageState extends State<HomePage> {
                   setState(() {
                     if (type != HomeItem.BookPage) {
                       type = HomeItem.BookPage;
+                      FirebaseAnalytics.instance.logEvent(name: "select_book");
                     }
                   });
                 },
@@ -67,6 +71,7 @@ class _HomePageState extends State<HomePage> {
                   setState(() {
                     if (type != HomeItem.ContactPage) {
                       type = HomeItem.ContactPage;
+                      FirebaseAnalytics.instance.logEvent(name: "select_contact");
                     }
                   });
                 },

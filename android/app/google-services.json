@@ -43,9 +43,45 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:428858923828:android:07ad8756ffed8d2e626361",
+        "mobilesdk_app_id": "1:428858923828:android:71b6adc5466a9437626361",
         "android_client_info": {
           "package_name": "com.example.restaurentlanding"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "428858923828-n700rr8hg0g8b5bk4ltnmhb68ep9344d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAGnx3fuHilk4nOZQjTqeFOs--K5CZpOXc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "428858923828-n700rr8hg0g8b5bk4ltnmhb68ep9344d.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "428858923828-02jet6jgl3p5q8gb66r5mkfrj1rf6g8j.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.foodpandaAdminWebPortal"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:428858923828:android:07ad8756ffed8d2e626361",
+        "android_client_info": {
+          "package_name": "com.example.solmusic"
         }
       },
       "oauth_client": [

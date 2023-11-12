@@ -58,7 +58,7 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyAGnx3fuHilk4nOZQjTqeFOs--K5CZpOXc',
-    appId: '1:428858923828:android:07ad8756ffed8d2e626361',
+    appId: '1:428858923828:android:71b6adc5466a9437626361',
     messagingSenderId: '428858923828',
     projectId: 'food-order-56bc3',
     storageBucket: 'food-order-56bc3.appspot.com',
@@ -66,12 +66,10 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyCEUKEmYd2AP7Cx1Ok4ky1SB-uRSBXOMRk',
-    appId: '1:428858923828:ios:66c398220f2fa681626361',
+    appId: '1:428858923828:ios:5079150b43b7e381626361',
     messagingSenderId: '428858923828',
     projectId: 'food-order-56bc3',
     storageBucket: 'food-order-56bc3.appspot.com',
-    iosClientId:
-        '428858923828-m04no51gn2vqg8rf4vb5273hqlr2nb76.apps.googleusercontent.com',
     iosBundleId: 'com.example.restaurentlanding',
   );
 }

@@ -35,6 +35,7 @@ dependencies:
   json_annotation: ^4.8.0
   intl: ^0.18.1
   webview_flutter_web: ^0.2.2+2
+  firebase_analytics: ^10.6.4
 
 dev_dependencies:
   flutter_test:
