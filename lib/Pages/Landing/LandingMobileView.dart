@@ -6,7 +6,6 @@ import 'package:restaurentlanding/Pages/Views/FooterView.dart';
 import 'package:restaurentlanding/Pages/Views/ImageMultipleSource.dart';
 import 'package:restaurentlanding/Style/Style.dart';
 import 'dart:ui' as ui;
-import 'package:google_maps/google_maps.dart' as mapGG;
 import 'package:restaurentlanding/Widget/RoundedButton.dart';
 import 'package:webview_flutter_platform_interface/webview_flutter_platform_interface.dart';
 
@@ -201,27 +200,6 @@ class _LandingMobileViewState extends State<LandingMobileView> {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     final String htmlId = "map";
-
-    // ignore: undefined_prefixed_name
-    ui.platformViewRegistry.registerViewFactory(htmlId, (int viewId) {
-      final mapOptions = mapGG.MapOptions()
-        ..zoom = 15.0
-        ..center = mapGG.LatLng(double.parse(widget.data?.latitude ?? "0"), double.parse(widget.data?.longitude ?? "0"));
-
-      final elem = DivElement()..id = htmlId;
-      final map = mapGG.GMap(elem, mapOptions);
-
-      map.onCenterChanged.listen((event) {});
-      map.onDragstart.listen((event) {});
-      map.onDragend.listen((event) {});
-
-      mapGG.Marker(mapGG.MarkerOptions()
-        ..position = map.center
-        ..map = map
-        ..title = widget.data?.restaurantName);
-
-      return elem;
-    });
 
     return SingleChildScrollView(
       child: Column(

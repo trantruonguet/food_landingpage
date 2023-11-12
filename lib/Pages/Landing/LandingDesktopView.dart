@@ -6,7 +6,6 @@ import 'package:restaurentlanding/Pages/Views/FooterView.dart';
 import 'package:restaurentlanding/Pages/Views/ImageMultipleSource.dart';
 import 'package:restaurentlanding/Style/Style.dart';
 import 'dart:ui' as ui;
-import 'package:google_maps/google_maps.dart' as mapGG;
 import 'package:restaurentlanding/Widget/RoundedButton.dart';
 import 'package:webview_flutter_platform_interface/webview_flutter_platform_interface.dart';
 
@@ -201,86 +200,6 @@ class _LandingDesktopViewState extends State<LandingDesktopView> {
     var size = MediaQuery.of(context).size;
     final String htmlId = "map";
     final String previewMapId = "preview_map";
-
-    mapGG.MapTypeControlOptions mapTypeControlOptions =
-        mapGG.MapTypeControlOptions();
-    mapTypeControlOptions.style = mapGG.MapTypeControlStyle.DROPDOWN_MENU;
-
-    // ignore: undefined_prefixed_name
-    ui.platformViewRegistry.registerViewFactory(htmlId, (int viewId) {
-      final panControl = mapGG.PanControlOptions()
-        ..position = mapGG.ControlPosition.BOTTOM_CENTER;
-      final mapOptions = mapGG.MapOptions()
-        ..zoom = 15.0
-        ..center = mapGG.LatLng(47.884841, 11.915343)
-        ..keyboardShortcuts = true
-        ..gestureHandling = 'cooperative'
-        ..panControl = true
-        ..panControlOptions = panControl
-        ..disableDefaultUI = true
-        ..disableDoubleClickZoom = true
-        // ..panControl = true
-        // ..mapTypeControl = true
-        // ..mapTypeControlOptions = mapTypeControlOptions
-        ..zoomControl = true;
-      // ..isFractionalZoomEnabled = true;
-
-      // mapOptions.disableDoubleClickZoom = false;
-
-      final elem = DivElement()..id = htmlId;
-      // elem.addEventListener('wheel', (event) {
-      //   // ignore: unrelated_type_equality_checks
-      //   if (event is WheelEvent && event.getModifierState('Control') != 0) {
-      //     event.preventDefault();
-      //   }
-      // });
-      final map = mapGG.GMap(elem, mapOptions);
-
-      map.onCenterChanged.listen((event) {});
-      map.onDragstart.listen((event) {});
-      map.onDragend.listen((event) {});
-
-      mapGG.Marker(mapGG.MarkerOptions()
-        ..position = map.center
-        ..map = map
-        ..title = widget.data?.restaurantName);
-
-      return elem;
-    });
-
-    // ignore: undefined_prefixed_name
-    ui.platformViewRegistry.registerViewFactory(previewMapId, (int viewId) {
-      final panControl = mapGG.PanControlOptions()
-        ..position = mapGG.ControlPosition.BOTTOM_CENTER;
-      final mapOptions = mapGG.MapOptions()
-        ..zoom = 15.0
-        ..center = mapGG.LatLng(double.parse(widget.data?.latitude ?? "0"), double.parse(widget.data?.longitude ?? "0"))
-        ..keyboardShortcuts = true
-        ..gestureHandling = 'cooperative'
-        ..panControl = true
-        ..panControlOptions = panControl
-        ..disableDefaultUI = true;
-
-      final elem = DivElement()..id = htmlId;
-      // elem.addEventListener('wheel', (event) {
-      //   // ignore: unrelated_type_equality_checks
-      //   if (event is WheelEvent && event.getModifierState('Control') != 0) {
-      //     event.preventDefault();
-      //   }
-      // });
-      final map = mapGG.GMap(elem, mapOptions);
-
-      map.onCenterChanged.listen((event) {});
-      map.onDragstart.listen((event) {});
-      map.onDragend.listen((event) {});
-
-      mapGG.Marker(mapGG.MarkerOptions()
-        ..position = map.center
-        ..map = map
-        ..title = widget.data?.restaurantName);
-
-      return elem;
-    });
 
     return SingleChildScrollView(
       child: Column(

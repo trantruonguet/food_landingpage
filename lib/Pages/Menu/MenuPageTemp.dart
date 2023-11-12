@@ -6,21 +6,6 @@ import '../../Style/Style.dart';
 import '/../generated/assets.dart';
 
 class MenuPageTemp extends StatelessWidget {
-  final images = [
-    Assets.imagesHardcodeMenu1,
-    Assets.imagesHardcodeMenu2,
-    Assets.imagesHardcodeMenu3,
-    Assets.imagesHardcodeMenu4,
-    Assets.imagesHardcodeMenu5,
-    Assets.imagesHardcodeMenu6,
-    Assets.imagesHardcodeMenu7,
-    Assets.imagesHardcodeMenu8,
-    Assets.imagesHardcodeMenu9,
-    Assets.imagesHardcodeMenu10,
-    Assets.imagesHardcodeMenu11,
-    Assets.imagesHardcodeMenu12,
-  ];
-
   MenuPageTemp({super.key});
 
   @override
@@ -45,17 +30,21 @@ class MenuPageTemp extends StatelessWidget {
                 SizedBox(
                   height: 12,
                 ),
-                Container(
-                  width: size.width,
-                  height: size.height - 32 - 12 - 30,
-                  padding: EdgeInsets.all(12),
-                  child: GridView.count(
-                    // Create a grid with 2 columns. If you change the scrollDirection to
-                    // horizontal, this produces 2 rows.
-                    crossAxisCount: constraints.maxWidth >= 600 ? 2 : 1,
-                    // Generate 100 widgets that display their index in the List.
-                    children: imageList(size.width, images)
-                  )
+                ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: 18,
+                  itemBuilder: (context, index) {
+                    return Padding(
+                      padding: EdgeInsets.all(20),
+                      child: Image.asset(
+                        index < 9
+                            ? "images/karte-copy-2_compressed_page-000${index + 1}.jpg"
+                            : "images/karte-copy-2_compressed_page-00${index + 1}.jpg",
+                        width: double.infinity,
+                        fit: BoxFit.fill,
+                      ),
+                    );
+                  },
                 ),
 
                 SizedBox(
