@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:restaurentlanding/Pages/Views/ImageMultipleSource.dart';
 
@@ -32,6 +31,7 @@ class MenuPageTemp extends StatelessWidget {
                 ),
                 ListView.builder(
                   shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
                   itemCount: 18,
                   itemBuilder: (context, index) {
                     return Padding(
@@ -46,7 +46,6 @@ class MenuPageTemp extends StatelessWidget {
                     );
                   },
                 ),
-
                 SizedBox(
                   height: 12,
                 ),
@@ -66,27 +65,27 @@ class MenuPageTemp extends StatelessWidget {
   }
 
   List<Widget> imageList(double screenWidth, List<String> images) {
-
     final width = screenWidth / 2 - 32;
     final height = width / 1265 * 1650;
-    final isMobile = screenWidth>=600;
+    final isMobile = screenWidth >= 600;
     final padding = isMobile ? 8.0 : 30.0;
 
-    List<Widget> result = images.map((e) => Padding(
-      padding: EdgeInsets.all(padding),
-      child: Image.asset(
-        e,
-        width: width,
-        height: height,
-        fit: BoxFit.fill,
-      ),
-    )).toList();
+    List<Widget> result = images
+        .map((e) => Padding(
+              padding: EdgeInsets.all(padding),
+              child: Image.asset(
+                e,
+                width: width,
+                height: height,
+                fit: BoxFit.fill,
+              ),
+            ))
+        .toList();
 
-    if (screenWidth>=600) {
+    if (screenWidth >= 600) {
       result.insert(1, Padding(padding: const EdgeInsets.all(8.0)));
       result.insert(9, Padding(padding: const EdgeInsets.all(8.0)));
     }
     return result;
-
   }
 }
